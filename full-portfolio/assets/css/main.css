@@ -32,7 +32,6 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-
 ol, ul {
 	list-style: none;
 }
@@ -85,7 +84,7 @@ input, select, textarea {
 	body {
 		background: #fff;
 	}
-
+	
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
 			-moz-animation: none !important;
 			-webkit-animation: none !important;
@@ -139,16 +138,19 @@ input, select, textarea {
 		font-weight: 400;
 		line-height: 1em;
 		margin: 0 0 1em 0;
+		text-align: center;
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 			color: inherit;
 			text-decoration: none;
+			text-align: center;
 		}
 
 	h1 {
 		font-size: 2em;
 		line-height: 1.5em;
+		text-align: center;
 	}
 
 	h2 {
@@ -2555,10 +2557,12 @@ input, select, textarea {
 
 	.work-item {
 		margin: 0 0 2em 0;
+		text-align: center;
 	}
 
 		.work-item .image {
 			margin: 0 0 1.5em 0;
+			border: 3px solid gray;
 		}
 
 		.work-item h3 {
@@ -2636,6 +2640,7 @@ input, select, textarea {
 			font-size: 1.35em;
 			line-height: 1.75em;
 			margin: 0;
+			text-align: center;
 		}
 
 		#header .image.avatar {
@@ -3003,10 +3008,12 @@ input, select, textarea {
 
 				#header h1 {
 					font-size: 1.25em;
+					text-align: center;
 				}
 
 					#header h1 br {
 						display: none;
+						text-align: center;
 					}
 
 				#header > .inner {
@@ -3042,6 +3049,7 @@ input, select, textarea {
 
 			h1 br, h2 br, h3 br, h4 br, h5 br, h6 br {
 				display: none;
+				text-align: center;
 			}
 
 		/* List */
@@ -3067,10 +3075,12 @@ input, select, textarea {
 
 				#header h1 {
 					font-size: 1.75em;
+					text-align: center;
 				}
 
 					#header h1 br {
 						display: inline;
+						text-align: center;
 					}
 
 		/* Footer */
@@ -3124,6 +3134,7 @@ input, select, textarea {
 
 			h1 {
 				font-size: 1.5em;
+				text-align: center;
 			}
 
 			h2 {
@@ -3162,6 +3173,7 @@ input, select, textarea {
 
 				#header h1 {
 					font-size: 1.35em;
+					text-align: center;
 				}
 
 		/* Footer */
@@ -3206,6 +3218,7 @@ input, select, textarea {
 
 				#header h1 br {
 					display: none;
+					text-align: center;
 				}
 
 		/* Footer */
