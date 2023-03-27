@@ -2145,6 +2145,7 @@ input, select, textarea {
 				border-radius: 100%;
 				width: 100%;
 			}
+		
 
 /* List */
 
@@ -2651,6 +2652,7 @@ input, select, textarea {
 
 		#footer .icons a {
 			color: rgba(255, 255, 255, 0.4);
+			border: none;
 		}
 
 	#footer .copyright {
