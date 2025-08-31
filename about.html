@@ -124,7 +124,7 @@
         /* About Content */
         .about-content {
             padding: 4rem 0;
-            background: white;
+            background: #fefbf7;
         }
 
         .about-grid {
@@ -159,16 +159,16 @@
         }
 
         .highlight {
-            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
-            padding: 0.2em 0.4em;
-            border-radius: 3px;
+            color: var(--accent-color);
             font-weight: 600;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 1px;
         }
 
         /* Journey Section */
         .journey {
             padding: 4rem 0;
-            background: var(--background-light);
+            background: #fefbf7;
         }
 
         .section-title {
@@ -260,42 +260,79 @@
         /* Values Section */
         .values {
             padding: 4rem 0;
-            background: white;
+            background: #fefbf7;
         }
 
         .values-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Better responsiveness for larger screens */
+        @media (min-width: 1400px) {
+            .values-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
 
         .value-card {
             text-align: center;
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             border-radius: 15px;
-            background: var(--background-light);
-            transition: transform 0.3s ease;
+            background: #fffef9;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 4px 15px rgba(43, 124, 133, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
         }
 
         .value-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(43, 124, 133, 0.2);
+            border-color: var(--secondary-color);
         }
 
         .value-icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--accent-color);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .value-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.4rem;
+            font-weight: 700;
             margin-bottom: 1rem;
             color: var(--primary-color);
         }
 
         .value-desc {
-            color: #666;
+            color: #555;
+            line-height: 1.6;
+            font-size: 1rem;
         }
 
         /* Responsive */
@@ -348,7 +385,7 @@
     <section class="page-header">
         <div class="container">
             <h1 class="page-title">About Me</h1>
-            <p class="page-subtitle">MS Analytics @ Georgia Tech | BS Data Analytics @ Miami Dade College</p>
+            <p class="page-subtitle">Turning Data Into Intelligence, One Model At A Time</p>
         </div>
     </section>
 
@@ -367,73 +404,26 @@
                         machine learning, and scalable data solutions that solve complex enterprise challenges.
                     </p>
                     <p>
-                        Currently pursuing my <span class="highlight">Master's in Analytics at Georgia Tech</span>, I hold a 
+                        Currently pursuing my Master's in Analytics at Georgia Tech, I hold a 
                         Bachelor's in Data Analytics from Miami Dade College. My experience spans from financial analytics 
-                        at Boeing Distribution Services to leading AI initiatives at Lennar, where I've built systems 
-                        serving 1M+ customers.
+                        at Boeing Distribution Services to leading AI initiatives at Lennar, where I focus on 
+                        <span class="highlight">enterprise-scale ML systems</span> and production deployments.
                     </p>
                     <p>
-                        What drives me is creating <span class="highlight">intelligent systems that streamline operations</span> 
+                        What drives me is creating intelligent systems that streamline operations 
                         and deliver real business value. From developing enterprise-scale AI customer service agents to 
                         implementing MLOps infrastructure with drift monitoring and automated retraining pipelines, 
                         I focus on building reliable, scalable solutions.
                     </p>
                     <p>
-                        My recent work includes engineering a chatbot MVP projected to deliver $200M+ in savings and 
-                        safeguard $120M+ in warranty exposure, along with developing unstructured data pipelines that 
-                        transform PDFs into actionable insights using LLMs and OCR technology.
-                    </p> 
-                        contributing to open-source projects, or mentoring aspiring data scientists.
+                        My recent work includes developing <span class="highlight">AI-powered chatbot systems</span> currently in MVP stage, 
+                        along with building unstructured data pipelines that transform PDFs into actionable insights 
+                        using LLMs and OCR technology. I specialize in taking experimental models from concept to production-ready systems.
                     </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Journey Section -->
-    <section class="journey">
-        <div class="container">
-            <h2 class="section-title">My Journey</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2025</div>
-                        <div class="timeline-title">Senior Data Scientist - Lennar</div>
-                        <div class="timeline-desc">
-                            Leading MLOps infrastructure and enterprise AI initiatives. Built customer service 
-                            agent MVP projected to deliver $200M+ in savings while serving 1M+ customers.
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2024</div>
-                        <div class="timeline-title">Data Scientist II - Lennar</div>
-                        <div class="timeline-desc">
-                            Reinvented national construction cost reporting and applied ML/NLP for NPS modeling 
-                            and underwriting optimization. Developed LLM-powered unstructured data pipelines.
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2023-2024</div>
-                        <div class="timeline-title">Data Analyst I - Lennar</div>
-                        <div class="timeline-desc">
-                            Built RAG-powered chatbot backends, zero-shot image classification pipelines, 
-                            and full-stack Foundry applications integrating ML models for operations optimization.
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2023</div>
-                        <div class="timeline-title">Financial Analyst II - Boeing Distribution Services</div>
-                        <div class="timeline-desc">
-                            Built regression models for financial forecasting and created dashboards for 
-                            multimillion-dollar operations, managing hundreds of millions in revenue.
-                        </div>
-                    </div>
+                    <p>
+                        When I'm not building models or optimizing pipelines, you'll find me exploring the latest 
+                        developments in AI research, contributing to open-source projects, or mentoring aspiring data scientists.
+                    </p>
                 </div>
             </div>
         </div>
@@ -442,38 +432,38 @@
     <!-- Values Section -->
     <section class="values">
         <div class="container">
-            <h2 class="section-title">What I Value</h2>
+            <h2 class="section-title">What Drives Me</h2>
             <div class="values-grid">
                 <div class="value-card">
-                    <div class="value-icon">🎯</div>
-                    <div class="value-title">Impact-Driven</div>
+                    <div class="value-icon">🔧</div>
+                    <div class="value-title">Building Things That Work</div>
                     <div class="value-desc">
-                        Every model I build is designed to solve real business problems and deliver 
-                        measurable value to stakeholders.
+                        I get excited about taking models from Jupyter notebooks to production systems 
+                        that actually solve real problems, not just look good in presentations.
                     </div>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">🔬</div>
-                    <div class="value-title">Scientific Rigor</div>
+                    <div class="value-icon">�</div>
+                    <div class="value-title">Data Tells Stories</div>
                     <div class="value-desc">
-                        I believe in data-driven decisions backed by statistical validation and 
-                        thorough experimentation.
+                        Every dataset has a story to tell. I love uncovering insights that change how 
+                        people think about their business challenges.
                     </div>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">🚀</div>
-                    <div class="value-title">Innovation</div>
+                    <div class="value-icon">🎓</div>
+                    <div class="value-title">Always Learning</div>
                     <div class="value-desc">
-                        Constantly exploring emerging technologies and methodologies to stay at the 
-                        forefront of AI and ML.
+                        The ML field moves fast. I'm constantly learning new techniques, frameworks, 
+                        and approaches while pursuing my Master's at Georgia Tech.
                     </div>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">🤝</div>
-                    <div class="value-title">Collaboration</div>
+                    <div class="value-icon">💡</div>
+                    <div class="value-title">Simple Solutions Win</div>
                     <div class="value-desc">
-                        The best solutions come from diverse teams working together. I value 
-                        cross-functional partnerships.
+                        The best models are often the simplest ones that solve the problem well. 
+                        I prefer elegant solutions over complex ones that impress but don't deliver.
                     </div>
                 </div>
             </div>
