@@ -160,52 +160,36 @@
         }
 
         .value-card {
-            text-align: center;
-            padding: 2.5rem 2rem;
-            border-radius: 15px;
             background: var(--card-background);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 2px solid var(--accent-color);
             box-shadow: 0 4px 15px rgba(43, 124, 133, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .value-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
         }
 
         .value-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(43, 124, 133, 0.2);
-            border-color: var(--secondary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(43, 124, 133, 0.2);
         }
 
         .value-icon {
-            font-size: 3.5rem;
+            font-size: 3rem;
+            margin-bottom: 1rem;
             color: var(--accent-color);
-            margin-bottom: 1.5rem;
             display: block;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .value-title {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--primary-color);
         }
 
         .value-desc {
-            color: #555;
-            line-height: 1.6;
-            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
         }
 
         /* Responsive */
@@ -312,7 +296,7 @@
                     </div>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">�</div>
+                    <div class="value-icon">📊</div>
                     <div class="value-title">Data Tells Stories</div>
                     <div class="value-desc">
                         Every dataset has a story to tell. I love uncovering insights that change how 
