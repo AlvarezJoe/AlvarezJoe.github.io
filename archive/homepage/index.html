@@ -1,20 +1,9 @@
-<!DOCTYPE ht        :root {
-            --primary-color: #1a1a1a;
-            --accent-color: #0066cc;
-            --secondary-color: #333333;
-            --tertiary-color: #666666;
-            --text-light: #ffffff;
-            --text-dark: #1a1a1a;
-            --background-light: #ffffff;
-            --background-dark: #f8f9fa;
-            --border-color: #e0e0e0;
-            --gradient-primary: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
-            --gradient-accent: linear-gradient(135deg, #0066cc 0%, #004499 100%);
-        }lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <title>Joemichael Alvarez - Senior Data Scientist & MLOps Engineer</title>
+    <title>Joe Alvarez - Senior Data Scientist & MLOps Engineer</title>
     <meta name="description" content="Senior Data Scientist specializing in AI/ML systems, MLOps, and scalable data solutions." />
     <meta name="keywords" content="Data Science, Machine Learning, MLOps, AI, Python, AWS, Databricks" />
     <meta name="author" content="Joemichael Alvarez" />
@@ -22,15 +11,14 @@
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
     <style>
         :root {
-            --primary-color: #0c1446;
-            --accent-color: #2b7c85;
-            --secondary-color: #175873;
-            --tertiary-color: #87aca3;
-            --text-light: #f0f8ff;
-            --text-dark: #1a202c;
-            --background-light: #f8fffe;
-            --gradient-primary: linear-gradient(135deg, #0c1446 0%, #175873 100%);
-            --gradient-secondary: linear-gradient(135deg, #2b7c85 0%, #87aca3 100%);
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --secondary-color: #e74c3c;
+            --text-light: #ecf0f1;
+            --text-dark: #2c3e50;
+            --background-light: #f8f9fa;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
         }
 
         * {
@@ -51,11 +39,11 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(12, 20, 70, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
             z-index: 1000;
             padding: 1rem 0;
-            border-bottom: 1px solid rgba(43, 124, 133, 0.3);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
 
         .nav-container {
@@ -70,41 +58,29 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--tertiary-color);
-            text-decoration: none !important;
-            border-bottom: none !important;
-        }
-
-        .logo:hover {
-            text-decoration: none !important;
-            border-bottom: none !important;
+            color: var(--primary-color);
+            text-decoration: none;
         }
 
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 0;
-            margin: 0;
-            padding: 0;
+            gap: 2rem;
         }
 
         .nav-link {
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-dark);
             font-weight: 500;
-            padding: 0.75rem 1.5rem;
-            transition: all 0.2s ease;
-            border-bottom: 2px solid transparent;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
         }
 
         .nav-link:hover {
-            color: var(--accent-color);
-            border-bottom-color: var(--accent-color);
-        }
-
-        .nav-link.active {
-            color: var(--accent-color);
-            border-bottom-color: var(--accent-color);
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
         }
 
         .nav-toggle {
@@ -118,13 +94,25 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, #0c1446 0%, #175873 50%, #2b7c85 100%);
+            background: var(--gradient-primary);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
             position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/bg.jpg') center/cover;
+            opacity: 0.1;
         }
 
         .hero-content {
@@ -136,19 +124,15 @@
 
         .hero h1 {
             font-size: 3.5rem;
-            font-weight: 600;
-            margin-bottom: 0.2rem;
-            color: var(--tertiary-color);
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            margin-bottom: 1rem;
             opacity: 0;
             animation: fadeInUp 1s ease forwards;
         }
 
         .hero-subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 2.5rem;
-            color: rgba(240, 248, 255, 0.9);
-            font-weight: 400;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
             opacity: 0;
             animation: fadeInUp 1s ease 0.3s forwards;
         }
@@ -156,8 +140,6 @@
         .hero-description {
             font-size: 1.1rem;
             margin-bottom: 3rem;
-            color: rgba(240, 248, 255, 0.8);
-            line-height: 1.6;
             opacity: 0;
             animation: fadeInUp 1s ease 0.6s forwards;
         }
@@ -173,38 +155,29 @@
 
         .btn {
             padding: 12px 30px;
-            border: 2px solid var(--accent-color);
-            border-radius: 4px;
-            font-weight: 500;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
             text-decoration: none;
             display: inline-block;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
-            font-size: 1rem;
         }
 
         .btn-primary {
-            background: var(--accent-color);
-            color: var(--primary-color);
-            border-color: var(--accent-color);
-            font-weight: 600;
-        }
-
-        .btn-primary:hover {
-            background: var(--tertiary-color);
-            border-color: var(--tertiary-color);
+            background: var(--secondary-color);
+            color: white;
         }
 
         .btn-secondary {
             background: transparent;
             color: white;
-            border-color: rgba(255, 255, 255, 0.6);
+            border: 2px solid white;
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: white;
-            transform: translateY(-2px);
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         /* Quick Stats */
@@ -304,7 +277,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">Joemichael Alvarez</a>
+            <a href="#" class="logo">Joe Alvarez</a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Home</a></li>
                 <li><a href="about.html" class="nav-link">About</a></li>
@@ -313,6 +286,7 @@
                 <li><a href="experience.html" class="nav-link">Experience</a></li>
                 <li><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
+            <button class="nav-toggle">☰</button>
         </div>
     </nav>
 
@@ -326,7 +300,7 @@
                 Specializing in machine learning, MLOps, and scalable data solutions.
             </p>
             <div class="cta-buttons">
-                <a href="portfolio.html" class="btn btn-secondary">View My Work</a>
+                <a href="portfolio.html" class="btn btn-primary">View My Work</a>
                 <a href="contact.html" class="btn btn-secondary">Let's Connect</a>
             </div>
         </div>
@@ -337,24 +311,24 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">2+</div>
+                    <div class="stat-number">5+</div>
                     <div class="stat-label">Years Experience</div>
                     <div class="stat-desc">In data science and machine learning</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Production Models</div>
-                    <div class="stat-desc">MLOps pipelines with monitoring & retraining</div>
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Model Accuracy</div>
+                    <div class="stat-desc">Average improvement in forecasting models</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">$320M+</div>
-                    <div class="stat-label">Business Impact</div>
-                    <div class="stat-desc">Projected savings from AI solutions</div>
+                    <div class="stat-number">$2M+</div>
+                    <div class="stat-label">Cost Savings</div>
+                    <div class="stat-desc">Generated through ML optimizations</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">1M+</div>
-                    <div class="stat-label">Users Served</div>
-                    <div class="stat-desc">Through enterprise AI applications</div>
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">ML Projects</div>
+                    <div class="stat-desc">Successfully deployed to production</div>
                 </div>
             </div>
         </div>
