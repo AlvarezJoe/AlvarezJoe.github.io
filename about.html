@@ -8,123 +8,10 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
     <style>
-        :root {
-            --primary-color: #0c1446;
-            --accent-color: #2b7c85;
-            --secondary-color: #175873;
-            --tertiary-color: #87aca3;
-            --text-light: #f0f8ff;
-            --text-dark: #1a202c;
-            --background-light: #f8fffe;
-            --gradient-primary: linear-gradient(135deg, #0c1446 0%, #175873 100%);
-            --gradient-secondary: linear-gradient(135deg, #2b7c85 0%, #87aca3 100%);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background: var(--background-light);
-        }
-
-        /* Navigation (same as homepage) */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(12, 20, 70, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(43, 124, 133, 0.3);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--tertiary-color);
-            text-decoration: none !important;
-            border-bottom: none !important;
-        }
-
-        .logo:hover {
-            text-decoration: none !important;
-            border-bottom: none !important;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 0;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 500;
-            padding: 0.75rem 1.5rem;
-            transition: all 0.2s ease;
-            border-bottom: 2px solid transparent;
-        }
-
-        .nav-link:hover {
-            color: var(--accent-color);
-            border-bottom-color: var(--accent-color);
-        }
-
-        .nav-link.active {
-            color: var(--accent-color);
-            border-bottom-color: var(--accent-color);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Page Header */
-        .page-header {
-            text-align: center;
-            padding: 8rem 0 4rem 0;
-            background: var(--gradient-primary);
-            color: white;
-        }
-
-        .page-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--tertiary-color);
-        }
-
-        .page-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            opacity: 0.95;
-        }
-
         /* About Content */
         .about-content {
             padding: 4rem 0;
-            background: #fefbf7;
+            background: var(--background-warm);
         }
 
         .about-grid {
@@ -158,24 +45,10 @@
             color: #555;
         }
 
-        .highlight {
-            color: var(--accent-color);
-            font-weight: 600;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 1px;
-        }
-
         /* Journey Section */
         .journey {
             padding: 4rem 0;
-            background: #fefbf7;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--primary-color);
+            background: var(--background-warm);
         }
 
         .timeline {
@@ -260,7 +133,7 @@
         /* Values Section */
         .values {
             padding: 4rem 0;
-            background: #fefbf7;
+            background: var(--background-warm);
         }
 
         .values-grid {
@@ -290,7 +163,7 @@
             text-align: center;
             padding: 2.5rem 2rem;
             border-radius: 15px;
-            background: #fffef9;
+            background: var(--card-background);
             border: 2px solid var(--accent-color);
             box-shadow: 0 4px 15px rgba(43, 124, 133, 0.1);
             transition: all 0.3s ease;
@@ -340,10 +213,6 @@
             .about-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
-            }
-
-            .page-title {
-                font-size: 2rem;
             }
 
             .timeline::before {

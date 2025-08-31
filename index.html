@@ -1,16 +1,5 @@
-<!DOCTYPE ht        :root {
-            --primary-color: #1a1a1a;
-            --accent-color: #0066cc;
-            --secondary-color: #333333;
-            --tertiary-color: #666666;
-            --text-light: #ffffff;
-            --text-dark: #1a1a1a;
-            --background-light: #ffffff;
-            --background-dark: #f8f9fa;
-            --border-color: #e0e0e0;
-            --gradient-primary: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
-            --gradient-accent: linear-gradient(135deg, #0066cc 0%, #004499 100%);
-        }lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -21,100 +10,6 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
     <style>
-        :root {
-            --primary-color: #0c1446;
-            --accent-color: #2b7c85;
-            --secondary-color: #175873;
-            --tertiary-color: #87aca3;
-            --text-light: #f0f8ff;
-            --text-dark: #1a202c;
-            --background-light: #f8fffe;
-            --gradient-primary: linear-gradient(135deg, #0c1446 0%, #175873 100%);
-            --gradient-secondary: linear-gradient(135deg, #2b7c85 0%, #87aca3 100%);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background: var(--background-light);
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(12, 20, 70, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(43, 124, 133, 0.3);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--tertiary-color);
-            text-decoration: none !important;
-            border-bottom: none !important;
-        }
-
-        .logo:hover {
-            text-decoration: none !important;
-            border-bottom: none !important;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 0;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 500;
-            padding: 0.75rem 1.5rem;
-            transition: all 0.2s ease;
-            border-bottom: 2px solid transparent;
-        }
-
-        .nav-link:hover {
-            color: var(--accent-color);
-            border-bottom-color: var(--accent-color);
-        }
-
-        .nav-link.active {
-            color: var(--accent-color);
-            border-bottom-color: var(--accent-color);
-        }
-
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -171,124 +66,8 @@
             animation: fadeInUp 1s ease 0.9s forwards;
         }
 
-        .btn {
-            padding: 12px 30px;
-            border: 2px solid var(--accent-color);
-            border-radius: 4px;
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--accent-color);
-            color: var(--primary-color);
-            border-color: var(--accent-color);
-            font-weight: 600;
-        }
-
-        .btn-primary:hover {
-            background: var(--tertiary-color);
-            border-color: var(--tertiary-color);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border-color: rgba(255, 255, 255, 0.6);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Quick Stats */
-        .quick-stats {
-            padding: 4rem 0;
-            background: white;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 2rem;
-            border-radius: 15px;
-            background: var(--background-light);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-desc {
-            color: #666;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
+        /* Mobile responsive */
         @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 70px;
-                flex-direction: column;
-                background-color: white;
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
-                padding: 2rem 0;
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .nav-toggle {
-                display: block;
-            }
-
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -328,34 +107,6 @@
             <div class="cta-buttons">
                 <a href="portfolio.html" class="btn btn-secondary">View My Work</a>
                 <a href="contact.html" class="btn btn-secondary">Let's Connect</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Stats -->
-    <section class="quick-stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">2+</div>
-                    <div class="stat-label">Years Experience</div>
-                    <div class="stat-desc">In data science and machine learning</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Production Models</div>
-                    <div class="stat-desc">MLOps pipelines with monitoring & retraining</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">$320M+</div>
-                    <div class="stat-label">Business Impact</div>
-                    <div class="stat-desc">Projected savings from AI solutions</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">1M+</div>
-                    <div class="stat-label">Users Served</div>
-                    <div class="stat-desc">Through enterprise AI applications</div>
-                </div>
             </div>
         </div>
     </section>
