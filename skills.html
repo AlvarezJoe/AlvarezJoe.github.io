@@ -21,19 +21,34 @@
             margin-bottom: 3rem;
         }
 
+        /* Card Styles - Matching Experience Page */
         .skill-category {
             background: var(--card-background);
+            border-radius: 20px;
             padding: 2rem;
-            border-radius: 15px;
+            border: 2px solid var(--accent-color);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(43, 124, 133, 0.1);
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid var(--accent-color);
-            box-shadow: 0 4px 15px rgba(43, 124, 133, 0.1);
+        }
+
+        /* Gradient top bar */
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--accent-color), #4a9ca8);
         }
 
         .skill-category:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(43, 124, 133, 0.2);
+            box-shadow: 0 8px 30px rgba(43, 124, 133, 0.2);
         }
 
         .skill-icon {
@@ -51,19 +66,24 @@
         .skill-category p {
             color: #666;
             margin-bottom: 1.5rem;
+            font-size: 0.95rem;
         }
 
         .skill-list {
             list-style: none;
             text-align: left;
+            margin: 0;
+            padding: 0;
         }
 
         .skill-list li {
             padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid rgba(43, 124, 133, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: var(--primary-color);
+            font-size: 0.9rem;
         }
 
         .skill-list li:last-child {
@@ -114,10 +134,8 @@
                     <ul class="skill-list">
                         <li>Supervised Learning</li>
                         <li>Unsupervised Learning</li>
-                        <li>Natural Language Processing (NLP)</li>
-                        <li>MLOps</li>
-                        <li>Intelligent Agent Frameworks</li>
                         <li>Large Language Models (LLMs)</li>
+                        <li>Intelligent Agent Frameworks</li>
                         <li>Statistical Methods</li>
                     </ul>
                 </div>
@@ -132,7 +150,6 @@
                         <li>Scalable Workflow Development</li>
                         <li>Distributed Computing</li>
                         <li>Palantir Foundry</li>
-                        <li>Production Model Deployment</li>
                     </ul>
                 </div>
 
@@ -144,10 +161,8 @@
                         <li>Python</li>
                         <li>SQL</li>
                         <li>Apache Spark</li>
-                        <li>Palantir Foundry</li>
-                        <li>Flask</li>
-                        <li>TypeScript</li>
-                        <li>C++</li>
+                        <li>Flask / FastAPI</li>
+                        <li>Github</li>
                     </ul>
                 </div>
 
@@ -157,11 +172,8 @@
                     <p>Creating compelling visual narratives from data</p>
                     <ul class="skill-list">
                         <li>Tableau</li>
-                        <li>Power BI</li>
+                        <li>Matplotlib</li>
                         <li>Streamlit</li>
-                        <li>Executive-level Reporting</li>
-                        <li>Dashboard Development</li>
-                        <li>Data Storytelling</li>
                     </ul>
                 </div>
             </div>
