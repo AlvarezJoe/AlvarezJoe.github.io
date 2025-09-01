@@ -52,14 +52,14 @@
 }
 
 /* Icon Content - Only the 3 icons used */
-.fa-envelope:before {
+.fa-envelope::before {
   content: '\f0e0';
 }
 
-.fa-linkedin:before {
+.fa-linkedin::before {
   content: '\f08c';
 }
 
-.fa-github:before {
+.fa-github::before {
   content: '\f09b';
 }
