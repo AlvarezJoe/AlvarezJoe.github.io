@@ -98,20 +98,20 @@
         }
 
         .career-card.expanded {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(43, 124, 133, 0.4);
+            z-index: 10;
+        }
+
+        .career-card.expanded:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        /* Prevent body from breaking when text is selected in modal */
+        body.modal-open {
+            overflow: hidden !important;
             position: fixed !important;
-            top: 5% !important;
-            left: 5% !important;
-            right: 5% !important;
-            bottom: 5% !important;
-            z-index: 1000;
-            transform: none !important;
-            overflow-y: auto;
-            max-width: none !important;
-            max-height: none !important;
-            margin: 0 !important;
-            display: block !important;
-            width: auto !important;
-            height: auto !important;
+            width: 100% !important;
         }
 
         .career-card.expanded .highlights-section {
@@ -127,24 +127,6 @@
                 transform: scale(1);
                 opacity: 1;
             }
-        }
-
-        .card-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .card-overlay.active {
-            opacity: 1;
-            visibility: visible;
         }
 
         .card-header {
@@ -174,11 +156,6 @@
             font-weight: 700;
             color: var(--primary-color);
             margin-bottom: 1rem;
-        }
-
-        .career-card.expanded .position-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
         }
 
         .position-description {
@@ -616,84 +593,28 @@
         </div>
     </section>
 
-    <!-- Overlay for expanded cards -->
-    <div class="card-overlay"></div>
-
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            const $overlay = $('.card-overlay');
             
             // Expand card on click
             $('.career-card').on('click', function(e) {
                 if ($(e.target).hasClass('close-btn')) return;
                 
                 const $card = $(this);
-                const scrollTop = $(window).scrollTop();
-                
-                // Create placeholder to maintain layout - capture all positioning
-                const cardOuterHeight = $card.outerHeight(true); // Include margins
-                const cardWidth = $card.outerWidth();
-                const cardMarginLeft = $card.css('margin-left');
-                const cardMarginRight = $card.css('margin-right');
-                const cardMarginTop = $card.css('margin-top');
-                const cardMarginBottom = $card.css('margin-bottom');
-                
-                const $placeholder = $('<div class="card-placeholder"></div>');
-                $placeholder.css({
-                    'height': $card.outerHeight() + 'px',
-                    'width': cardWidth + 'px',
-                    'margin-left': cardMarginLeft,
-                    'margin-right': cardMarginRight,
-                    'margin-top': cardMarginTop,
-                    'margin-bottom': cardMarginBottom,
-                    'visibility': 'hidden',
-                    'box-sizing': 'border-box'
-                });
-                $card.before($placeholder);
-                
                 $card.addClass('expanded');
-                $overlay.addClass('active');
-                $('body').css({
-                    'overflow': 'hidden',
-                    'position': 'fixed',
-                    'top': -scrollTop + 'px',
-                    'width': '100%'
-                });
             });
             
-            // Close expanded card (use event delegation for cloned cards)
-            $(document).on('click', '.close-btn, .card-overlay', function() {
-                const scrollTop = parseInt($('body').css('top')) * -1;
-                
+            // Close expanded card
+            $('.close-btn').on('click', function() {
                 $('.career-card.expanded').removeClass('expanded');
-                $('.card-placeholder').remove(); // Remove placeholder
-                $overlay.removeClass('active');
-                $('body').css({
-                    'overflow': 'auto',
-                    'position': 'static',
-                    'top': 'auto',
-                    'width': 'auto'
-                });
-                $(window).scrollTop(scrollTop);
             });
             
             // Close on escape key
             $(document).on('keydown', function(e) {
                 if (e.key === 'Escape') {
-                    const scrollTop = parseInt($('body').css('top')) * -1;
-                    
                     $('.career-card.expanded').removeClass('expanded');
-                    $('.card-placeholder').remove(); // Remove placeholder
-                    $overlay.removeClass('active');
-                    $('body').css({
-                        'overflow': 'auto',
-                        'position': 'static',
-                        'top': 'auto',
-                        'width': 'auto'
-                    });
-                    $(window).scrollTop(scrollTop);
                 }
             });
         });
