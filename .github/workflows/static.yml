@@ -1,0 +1,145 @@
+# Workflow for code quality checks and deploying static content to GitHub Pages
+name: CI/CD Pipeline
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+  
+  # Runs on pull requests
+  pull_request:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Code quality checks
+  lint-and-format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: |
+          npm init -y
+          npm install --save-dev prettier eslint stylelint stylelint-config-standard htmlhint sass
+      
+      - name: Create config files
+        run: |
+          # Prettier config
+          cat > .prettierrc << 'EOF'
+          {
+            "semi": true,
+            "trailingComma": "es5",
+            "singleQuote": true,
+            "printWidth": 80,
+            "tabWidth": 2,
+            "useTabs": false
+          }
+          EOF
+          
+          # ESLint config
+          cat > .eslintrc.json << 'EOF'
+          {
+            "env": {
+              "browser": true,
+              "es2021": true
+            },
+            "extends": "eslint:recommended",
+            "parserOptions": {
+              "ecmaVersion": "latest",
+              "sourceType": "module"
+            },
+            "rules": {
+              "no-unused-vars": "warn",
+              "no-console": "off"
+            }
+          }
+          EOF
+          
+          # Stylelint config
+          cat > .stylelintrc.json << 'EOF'
+          {
+            "extends": ["stylelint-config-standard"],
+            "rules": {
+              "indentation": 2,
+              "string-quotes": "single"
+            }
+          }
+          EOF
+          
+          # HTMLHint config
+          cat > .htmlhintrc << 'EOF'
+          {
+            "tagname-lowercase": true,
+            "attr-lowercase": true,
+            "attr-value-double-quotes": true,
+            "doctype-first": true,
+            "tag-pair": true,
+            "spec-char-escape": true,
+            "id-unique": true,
+            "src-not-empty": true,
+            "attr-no-duplication": true,
+            "title-require": true
+          }
+          EOF
+      
+      - name: Lint HTML
+        run: npx htmlhint "**/*.html"
+      
+      - name: Lint CSS
+        run: npx stylelint "**/*.css"
+      
+      - name: Lint SCSS
+        run: npx stylelint "**/*.scss" --syntax scss
+      
+      - name: Lint JavaScript
+        run: npx eslint "**/*.js"
+      
+      - name: Check Prettier formatting
+        run: npx prettier --check "**/*.{html,css,scss,js}"
+      
+      - name: Compile SCSS (validation)
+        run: npx sass assets/sass/main.scss:assets/css/main-compiled.css --no-source-map
+
+  # Deploy job (only runs on main branch)
+  # Deploy job (only runs on main branch)
+  deploy:
+    needs: lint-and-format
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
