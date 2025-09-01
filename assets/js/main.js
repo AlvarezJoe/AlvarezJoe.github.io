@@ -308,4 +308,80 @@
 		}
 	});
 
+	// ===========================
+	// CONTACT PAGE FUNCTIONALITY
+	// ===========================
+	
+	$(document).ready(function() {
+		// Initialize EmailJS (you'll need to sign up at emailjs.com and get your keys)
+		// emailjs.init("YOUR_PUBLIC_KEY"); // Uncomment and add your EmailJS public key
+		
+		// Contact form submission with EmailJS integration
+		$('#contact-form').submit(function(e) {
+			e.preventDefault();
+			
+			// Get form data
+			var formData = {
+				name: $('#name').val(),
+				email: $('#email').val(),
+				company: $('#company').val(),
+				projectType: $('#project-type').val(),
+				message: $('#message').val()
+			};
+			
+			// Validate required fields
+			if (!formData.name || !formData.email || !formData.message) {
+				alert('Please fill in all required fields.');
+				return;
+			}
+			
+			// Show loading state
+			var submitBtn = $('.button.primary');
+			var originalText = submitBtn.text();
+			submitBtn.text('Sending...').prop('disabled', true);
+			
+			// Option 1: EmailJS (recommended for production)
+			/*
+			emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+				from_name: formData.name,
+				from_email: formData.email,
+				company: formData.company,
+				project_type: formData.projectType,
+				message: formData.message,
+				to_email: "alvarez.joemichael@gmail.com"
+			}).then(function(response) {
+				alert('Thank you for your message! I\'ll get back to you soon.');
+				document.querySelector('#contact-form').reset();
+			}, function(error) {
+				alert('Failed to send message. Please try again or email me directly.');
+				console.error('EmailJS error:', error);
+			}).finally(function() {
+				submitBtn.text(originalText).prop('disabled', false);
+			});
+			*/
+			
+			// Option 2: Mailto fallback (current implementation)
+			var subject = encodeURIComponent(`Contact Form: ${formData.projectType || 'General Inquiry'}`);
+			var body = encodeURIComponent(`
+Name: ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company || 'Not specified'}
+Project Type: ${formData.projectType || 'Not specified'}
+
+Message:
+${formData.message}
+			`.trim());
+			
+			var mailtoLink = `mailto:alvarez.joemichael@gmail.com?subject=${subject}&body=${body}`;
+			window.location.href = mailtoLink;
+			
+			// Reset form and button
+			setTimeout(function() {
+				document.querySelector('#contact-form').reset();
+				submitBtn.text(originalText).prop('disabled', false);
+				alert('Your email client should have opened. If not, please email me directly at alvarez.joemichael@gmail.com');
+			}, 1000);
+		});
+	});
+
 })(jQuery);
