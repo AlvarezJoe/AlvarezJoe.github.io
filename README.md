@@ -73,6 +73,8 @@ make clean       # Clean temporary files
 
 **Workflow**: `Push → Lint → Test → Format → Deploy → Live`
 
+**Custom GitHub Pages Deployment**: Uses GitHub Actions instead of default Pages build for quality control.
+
 ## Contact
 
 **Website**: [alvarezjoe.github.io](https://alvarezjoe.github.io)  
