@@ -1,4 +1,4 @@
-﻿@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic");
+﻿@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
 /* Custom Color Variables - Updated Theme */
 :root {
@@ -14,7 +14,7 @@
     --background-light: #f8fffe;
     --background-warm: #fefbf7;
     --card-background: #fffef9;
-    --gradient-primary: linear-gradient(135deg, #0c1446 0%, #175873 100%);
+    --gradient-primary: linear-gradient(135deg, #2b7c85 0%, #1a237e 100%);
     --gradient-secondary: linear-gradient(135deg, #2b7c85 0%, #87aca3 100%);
 }
 
@@ -113,7 +113,7 @@ input, select, textarea {
 
 	body, input, select, textarea {
 		color: #a2a2a2;
-		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 		font-size: 16pt;
 		font-weight: 400;
 		line-height: 1.75em;
@@ -2836,7 +2836,7 @@ body {
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(135deg, #0c1446 0%, #175873 50%, #2b7c85 100%);
+    background: linear-gradient(135deg, #2b7c85 0%, #1a237e 100%);
     display: flex;
     align-items: center;
     justify-content: center;
