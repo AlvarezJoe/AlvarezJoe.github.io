@@ -37,10 +37,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-<<<<<<< HEAD
-=======
-          cache: 'npm'
->>>>>>> 0e70c798edeed0cae20e1841b4b52103a84bb362
       
       - name: Install dependencies
         run: |
@@ -125,7 +121,6 @@ jobs:
       - name: Compile SCSS (validation)
         run: npx sass assets/sass/main.scss:assets/css/main-compiled.css --no-source-map
 
-  # Deploy job (only runs on main branch)
   # Deploy job (only runs on main branch)
   deploy:
     needs: lint-and-format
