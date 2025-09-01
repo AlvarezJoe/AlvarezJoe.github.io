@@ -57,43 +57,36 @@ jobs:
           }
           EOF
           
-          # ESLint config
-          cat > .eslintrc.json << 'EOF'
-          {
-            "env": {
-              "browser": true,
-              "es2021": true
-            },
-            "extends": "eslint:recommended",
-            "parserOptions": {
-              "ecmaVersion": "latest",
-              "sourceType": "module"
-            },
-            "rules": {
-              "no-unused-vars": "warn",
-              "no-console": "off"
+          # ESLint config (new v9 format)
+          cat > eslint.config.js << 'EOF'
+          export default [
+            {
+              languageOptions: {
+                ecmaVersion: "latest",
+                sourceType: "module",
+                globals: {
+                  window: "readonly",
+                  document: "readonly",
+                  console: "readonly"
+                }
+              },
+              rules: {
+                "no-unused-vars": "warn",
+                "no-console": "off"
+              }
             }
-          }
+          ];
           EOF
           
-          # Stylelint config (balanced - Prettier handles formatting)
+          # Stylelint config (simple and lenient)
           cat > .stylelintrc.json << 'EOF'
           {
             "extends": ["stylelint-config-standard"],
             "rules": {
-              "indentation": null,
-              "string-quotes": null,
-              "selector-pseudo-element-colon-notation": null,
-              "property-no-vendor-prefix": null,
-              "selector-no-vendor-prefix": null,
-              "no-duplicate-selectors": "warning",
-              "no-descending-specificity": "warning",
-              "font-family-no-missing-generic-family-keyword": "warning",
-              "media-feature-range-notation": null,
-              "length-zero-no-unit": "warning",
-              "shorthand-property-no-redundant-values": "warning",
-              "color-hex-length": "warning",
-              "number-max-precision": 4
+              "number-max-precision": null,
+              "keyframes-name-pattern": null,
+              "selector-id-pattern": null,
+              "declaration-block-no-shorthand-property-overrides": null
             }
           }
           EOF
