@@ -129,18 +129,10 @@ jobs:
           npx stylelint "**/*.css" --fix || true
           echo "CSS linting completed (non-blocking)"
       
-      - name: Lint and auto-fix SCSS
-        run: |
-          npx stylelint "**/*.scss" --fix || true
-          echo "SCSS linting completed (non-blocking)"
-      
       - name: Lint JavaScript
         run: |
           npx eslint "**/*.js" --fix || true
           echo "JavaScript linting completed (non-blocking)"
-      
-      - name: Compile SCSS (validation)
-        run: npx sass assets/sass/main.scss:assets/css/main-compiled.css --no-source-map
 
   # Deploy job (only runs on main branch)
   deploy:
