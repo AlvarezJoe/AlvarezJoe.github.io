@@ -2,312 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width
-        .career-card:hover {h, initial-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title>Experience - Joemichael Alvarez</title>
     <meta name="description" content="Professional experience and career highlights of Joemichael Alvarez." />
+    <meta name="keywords" content="Experience, Career, Professional, Data Science, Machine Learning, Analytics" />
+    <meta name="author" content="Joemichael Alvarez" />
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-    <style>
-        /* Career Timeline with Expandable Cards */
-        .journey-section {
-            padding: 4rem 0;
-            background: var(--background-warm);
-        }
-
-        .career-timeline {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* Vertical timeline line */
-        .career-timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, var(--accent-color), var(--tertiary-color));
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 4rem;
-            width: 100%;
-        }
-
-        .career-card {
-            background: var(--card-background);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 2px solid var(--accent-color);
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(43, 124, 133, 0.1);
-            width: 45%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Alternate left and right positioning */
-        .timeline-item:nth-child(odd) .career-card {
-            margin-left: 0;
-            margin-right: auto;
-        }
-
-        .timeline-item:nth-child(even) .career-card {
-            margin-left: auto;
-            margin-right: 0;
-        }
-
-        /* Timeline dots */
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 2rem;
-            width: 20px;
-            height: 20px;
-            background: var(--accent-color);
-            border: 4px solid var(--card-background);
-            border-radius: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            box-shadow: 0 2px 10px rgba(43, 124, 133, 0.3);
-        }
-
-        .career-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-color), var(--tertiary-color));
-        }
-
-        .career-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(43, 124, 133, 0.25);
-            z-index: 10;
-        }
-
-        .career-card.expanded {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 30px 80px rgba(43, 124, 133, 0.4);
-            z-index: 10;
-        }
-
-        .career-card.expanded:hover {
-            transform: translateY(-8px) scale(1.02);
-        }
-
-        /* Prevent body from breaking when text is selected in modal */
-        body.modal-open {
-            overflow: hidden !important;
-            position: fixed !important;
-            width: 100% !important;
-        }
-
-        .career-card.expanded .highlights-section {
-            display: block !important;
-        }
-
-        @keyframes expandCard {
-            from {
-                transform: scale(0.8);
-                opacity: 0.8;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .card-header {
-            margin-bottom: 1.5rem;
-        }
-
-        .date-badge {
-            background: var(--accent-color);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-
-        .company-name {
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .position-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .position-description {
-            color: #666;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .highlights-section {
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .career-card.expanded .highlights-section {
-            opacity: 1;
-            max-height: none;
-            overflow: visible;
-        }
-
-        .highlights-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin: 2rem 0 1.5rem 0;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
-        }
-
-        .highlight-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
-            background: rgba(43, 124, 133, 0.05);
-            border-radius: 15px;
-            border-left: 4px solid var(--accent-color);
-        }
-
-        .highlight-icon {
-            background: var(--accent-color);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            flex-shrink: 0;
-            font-size: 0.9rem;
-        }
-
-        .highlight-text {
-            flex: 1;
-            color: var(--text-dark);
-            font-weight: 500;
-            line-height: 1.5;
-        }
-
-        .tech-stack {
-            margin-top: 2rem;
-        }
-
-        .tech-stack h4 {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-
-        .tech-tag {
-            background: var(--accent-color);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-
-        .career-card.expanded .close-btn {
-            display: flex;
-        }
-
-        .close-btn:hover {
-            background: var(--secondary-color);
-            transform: scale(1.1);
-        }
-
-        .expand-hint {
-            text-align: center;
-            margin-top: 1rem;
-            color: var(--accent-color);
-            font-size: 0.9rem;
-            font-weight: 500;
-            opacity: 0.8;
-        }
-
-        .career-card.expanded .expand-hint {
-            display: none;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .career-timeline::before {
-                left: 30px;
-            }
-            
-            .timeline-item::before {
-                left: 30px;
-            }
-            
-            .timeline-item:nth-child(odd) .career-card,
-            .timeline-item:nth-child(even) .career-card {
-                width: 100%;
-                margin-left: 60px;
-                margin-right: 0;
-            }
-            
-            .career-card.expanded {
-                top: 2%;
-                left: 2%;
-                right: 2%;
-                bottom: 2%;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -333,259 +36,126 @@
         </div>
     </section>
 
-    <!-- Career Journey -->
-    <section class="journey-section">
+    <!-- Experience Section -->
+    <section class="experience-section">
         <div class="container">
             <h2 class="section-title">Career Journey</h2>
-            <div class="career-timeline">
+            <div class="experience-grid">
                 
                 <!-- Lennar Senior Data Scientist -->
-                <div class="timeline-item">
-                    <div class="career-card" data-role="current">
-                        <button class="close-btn">&times;</button>
-                        <div class="card-header">
-                        <div class="date-badge">Jul 2025 – Present</div>
-                        <div class="company-name">Lennar</div>
-                        <h3 class="position-title">Senior Data Scientist</h3>
-                        <p class="position-description">
+                <div class="experience-card">
+                    <div class="position-content">
+                        <div class="position-header">
+                            <div class="company-info">
+                                <h3>Lennar</h3>
+                            </div>
+                            <div class="date-range">Jul 2025 – Present</div>
+                        </div>
+                        <h4>Senior Data Scientist</h4>
+                        
+                        <div class="experience-description">
                             Leading enterprise-scale AI initiatives and MLOps infrastructure for one of America's largest homebuilders.
-                        </p>
-                    </div>
-                    
-                    <div class="highlights-section">
-                        <h4 class="highlights-title">Key Achievements</h4>
-                        
-                        <div class="highlight-item">
-                            <div class="highlight-icon">🚀</div>
-                            <div class="highlight-text">
-                                Elevated MLOps infrastructure by implementing drift monitoring, automated alerting, and retraining pipelines—ensuring reliability for 10+ production models delivering national-scale forecasts
-                            </div>
                         </div>
                         
-                        <div class="highlight-item">
-                            <div class="highlight-icon">🤖</div>
-                            <div class="highlight-text">
-                                Designed enterprise-scale AI customer service agent MVP targeting 1M+ customers, projected to support $120M+ in warranty exposure management
-                            </div>
-                        </div>
-                        
-                        <div class="highlight-item">
-                            <div class="highlight-icon">⚡</div>
-                            <div class="highlight-text">
-                                Engineered scalable backend tooling and APIs on AWS to power chatbot workflows and integrate automation into Lennar's core customer experience platform
-                            </div>
-                        </div>
-                        
-                        <div class="highlight-item">
-                            <div class="highlight-icon">🎯</div>
-                            <div class="highlight-text">
-                                Cross-functional SME supporting analytics, engineering, and operations teams in resolving complex challenges and driving innovative solutions
-                            </div>
-                        </div>
-                        
-                        <div class="tech-stack">
-                            <h4>Technologies Used</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">AWS</span>
-                                <span class="tech-tag">Palantir Foundry</span>
-                                <span class="tech-tag">MLOps</span>
-                                <span class="tech-tag">LLMs</span>
-                                <span class="tech-tag">FastAPI</span>
+                        <div class="achievements">
+                            <h5 class="achievements-toggle">Key Achievements <span class="toggle-icon">+</span></h5>
+                            <div class="achievements-content">
+                                <ul>
+                                    <li>Elevated MLOps infrastructure by implementing drift monitoring, automated alerting, and retraining pipelines—ensuring reliability for 10+ production models delivering national-scale forecasts</li>
+                                    <li>Designed enterprise-scale AI customer service agent MVP targeting 1M+ customers, projected to support $120M+ in warranty exposure management</li>
+                                    <li>Engineered scalable backend tooling and APIs on AWS to power chatbot workflows and integrate automation into Lennar's core customer experience platform</li>
+                                    <li>Cross-functional SME supporting analytics, engineering, and operations teams in resolving complex challenges and driving innovative solutions</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="expand-hint">Click to expand details</div>
                 </div>
 
                 <!-- Lennar Data Scientist II -->
-                <div class="timeline-item">
-                    <div class="career-card">
-                        <button class="close-btn">&times;</button>
-                    <div class="card-header">
-                        <div class="date-badge">Nov 2024 – Jul 2025</div>
-                        <div class="company-name">Lennar</div>
-                        <h3 class="position-title">Data Scientist II</h3>
-                        <p class="position-description">
+                <div class="experience-card">
+                    <div class="position-content">
+                        <div class="position-header">
+                            <div class="company-info">
+                                <h3>Lennar</h3>
+                            </div>
+                            <div class="date-range">Nov 2024 – Jul 2025</div>
+                        </div>
+                        <h4>Data Scientist II</h4>
+                        
+                        <div class="experience-description">
                             Advanced ML solutions and data pipelines supporting executive-level reporting and business optimization.
-                        </p>
-                    </div>
-                    
-                    <div class="highlights-section">
-                        <h4 class="highlights-title">Key Achievements</h4>
-                        
-                        <div class="highlight-item">
-                            <div class="highlight-icon">📊</div>
-                            <div class="highlight-text">
-                                Partnered with cross-functional teams to reinvent national direct construction cost reporting, using SQL for data analysis and ensuring data veracity while supporting executive-level reporting in Power BI
-                            </div>
                         </div>
                         
-                        <div class="highlight-item">
-                            <div class="highlight-icon">🧠</div>
-                            <div class="highlight-text">
-                                Applied machine learning and NLP techniques with Python, Scikit-learn, TensorFlow, and Keras to support initiatives such as NPS score modeling and build-to-rent underwriting optimization
+                        <div class="achievements">
+                            <h5 class="achievements-toggle">Key Achievements <span class="toggle-icon">+</span></h5>
+                            <div class="achievements-content">
+                                <ul>
+                                    <li>Partnered with cross-functional teams to reinvent national direct construction cost reporting, using SQL for data analysis and ensuring data veracity while supporting executive-level reporting in Power BI</li>
+                                    <li>Applied machine learning and NLP techniques with Python, Scikit-learn, TensorFlow, and Keras to support initiatives such as NPS score modeling and build-to-rent underwriting optimization</li>
+                                    <li>Developed and deployed scalable ML workflows in AWS and Palantir Foundry with MLOps best practices—supporting production pipelines with drift monitoring, retraining, and automated alerting</li>
+                                    <li>Partnered with leadership to develop an unstructured data pipeline in Palantir Foundry, leveraging LLMs, OCR, and image-to-table extraction to transform PDFs and scanned documents from an acquired company into structured, tabular data for downstream analytics</li>
+                                </ul>
                             </div>
                         </div>
-                        
-                        <div class="highlight-item">
-                            <div class="highlight-icon">🔄</div>
-                            <div class="highlight-text">
-                                Developed and deployed scalable ML workflows in AWS and Palantir Foundry with MLOps best practices—supporting production pipelines with drift monitoring, retraining, and automated alerting
-                            </div>
-                        </div>
-                        
-                        <div class="highlight-item">
-                            <div class="highlight-icon">📄</div>
-                            <div class="highlight-text">
-                                Partnered with leadership to develop an unstructured data pipeline in Palantir Foundry, leveraging LLMs, OCR, and image-to-table extraction to transform PDFs and scanned documents from an acquired company into structured, tabular data for downstream analytics
-                            </div>
-                        </div>
-                        
-                        <div class="tech-stack">
-                            <h4>Technologies Used</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">SQL</span>
-                                <span class="tech-tag">Scikit-learn</span>
-                                <span class="tech-tag">TensorFlow</span>
-                                <span class="tech-tag">Keras</span>
-                                <span class="tech-tag">Power BI</span>
-                                <span class="tech-tag">AWS</span>
-                                <span class="tech-tag">Palantir Foundry</span>
-                                <span class="tech-tag">LLMs</span>
-                                <span class="tech-tag">OCR</span>
-                                <span class="tech-tag">MLOps</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="expand-hint">Click to expand details</div>
                     </div>
                 </div>
 
                 <!-- Lennar Data Analyst I -->
-                <div class="timeline-item">
-                    <div class="career-card">
-                        <button class="close-btn">&times;</button>
-                    <div class="card-header">
-                        <div class="date-badge">Aug 2023 – Dec 2023</div>
-                        <div class="company-name">Lennar</div>
-                        <h3 class="position-title">Data Analyst I</h3>
-                        <p class="position-description">
+                <div class="experience-card">
+                    <div class="position-content">
+                        <div class="position-header">
+                            <div class="company-info">
+                                <h3>Lennar</h3>
+                            </div>
+                            <div class="date-range">Aug 2023 – Nov 2024</div>
+                        </div>
+                        <h4>Data Analyst I</h4>
+                        
+                        <div class="experience-description">
                             Built foundational AI systems and ML applications for operational efficiency and user experience enhancement.
-                        </p>
-                    </div>
-                    
-                    <div class="highlights-section">
-                        <h4 class="highlights-title">Key Achievements</h4>
-                        
-                        <div class="highlight-item">
-                            <div class="highlight-icon">💬</div>
-                            <div class="highlight-text">
-                                Built and deployed an avatar chatbot backend using Retrieval-Augmented Generation (RAG), improving user interaction and operational efficiency
-                            </div>
                         </div>
                         
-                        <div class="highlight-item">
-                            <div class="highlight-icon">🔍</div>
-                            <div class="highlight-text">
-                                Designed and implemented a zero-shot image classification pipeline, automating QA workflows and reducing manual effort
-                            </div>
-                        </div>
-                        
-                        <div class="highlight-item">
-                            <div class="highlight-icon">🏗️</div>
-                            <div class="highlight-text">
-                                Engineered a full-stack Foundry application, integrating ML models to optimize underwriting and operations
-                            </div>
-                        </div>
-                        
-                        <div class="highlight-item">
-                            <div class="highlight-icon">�</div>
-                            <div class="highlight-text">
-                                Developed scalable data workflows and performed ad hoc data science tasks
-                            </div>
-                        </div>
-                        
-                        <div class="highlight-item">
-                            <div class="highlight-icon">�📈</div>
-                            <div class="highlight-text">
-                                Presented data-driven insights and technical demonstrations to cross-functional teams, including executives and technical staff, driving adoption of innovative solutions
-                            </div>
-                        </div>
-                        
-                        <div class="tech-stack">
-                            <h4>Technologies Used</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">RAG</span>
-                                <span class="tech-tag">Computer Vision</span>
-                                <span class="tech-tag">Palantir Foundry</span>
-                                <span class="tech-tag">ML Models</span>
+                        <div class="achievements">
+                            <h5 class="achievements-toggle">Key Achievements <span class="toggle-icon">+</span></h5>
+                            <div class="achievements-content">
+                                <ul>
+                                    <li>Built and deployed an avatar chatbot backend using Retrieval-Augmented Generation (RAG), improving user interaction and operational efficiency</li>
+                                    <li>Designed and implemented a zero-shot image classification pipeline, automating QA workflows and reducing manual effort</li>
+                                    <li>Engineered a full-stack Foundry application, integrating ML models to optimize underwriting and operations</li>
+                                    <li>Developed scalable data workflows and performed ad hoc data science tasks</li>
+                                    <li>Presented data-driven insights and technical demonstrations to cross-functional teams, including executives and technical staff, driving adoption of innovative solutions</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Boeing Financial Analyst -->
-                <div class="timeline-item">
-                    <div class="career-card">
-                        <button class="close-btn">&times;</button>
-                    <div class="card-header">
-                        <div class="date-badge">Aug 2023 – Dec 2023</div>
-                        <div class="company-name">Boeing Distribution Services Inc.</div>
-                        <h3 class="position-title">Financial Analyst II</h3>
-                        <p class="position-description">
+                <div class="experience-card">
+                    <div class="position-content">
+                        <div class="position-header">
+                            <div class="company-info">
+                                <h3>Boeing Distribution Services Inc.</h3>
+                            </div>
+                            <div class="date-range">Jun 2022 – Aug 2023</div>
+                        </div>
+                        <h4>Financial Analyst II</h4>
+                        
+                        <div class="experience-description">
                             Applied data science to financial forecasting and enterprise system management for aerospace operations.
-                        </p>
-                    </div>
-                    
-                    <div class="highlights-section">
-                        <h4 class="highlights-title">Key Achievements</h4>
-                        
-                        <div class="highlight-item">
-                            <div class="highlight-icon">📊</div>
-                            <div class="highlight-text">
-                                Built regression models to forecast accounts receivable and payable, improving financial accuracy and reducing risk
-                            </div>
                         </div>
                         
-                        <div class="highlight-item">
-                            <div class="highlight-icon">📋</div>
-                            <div class="highlight-text">
-                                Conducted monthly analyses and created dashboards to streamline financial reporting for multimillion-dollar operations
+                        <div class="achievements">
+                            <h5 class="achievements-toggle">Key Achievements <span class="toggle-icon">+</span></h5>
+                            <div class="achievements-content">
+                                <ul>
+                                    <li>Built regression models to forecast accounts receivable and payable, improving financial accuracy and reducing risk</li>
+                                    <li>Conducted monthly analyses and created dashboards to streamline financial reporting for multimillion-dollar operations</li>
+                                    <li>Ensured accurate data reconciliation and reporting for enterprise systems managing hundreds of millions in revenue</li>
+                                    <li>Collaborated with teams to generate ad hoc analyses, providing actionable insights for decision-makers</li>
+                                </ul>
                             </div>
                         </div>
-                        
-                        <div class="highlight-item">
-                            <div class="highlight-icon">💰</div>
-                            <div class="highlight-text">
-                                Ensured accurate data reconciliation and reporting for enterprise systems managing hundreds of millions in revenue
-                            </div>
-                        </div>
-                        
-                        <div class="highlight-item">
-                            <div class="highlight-icon">🎯</div>
-                            <div class="highlight-text">
-                                Collaborated with teams to generate ad hoc analyses, providing actionable insights for decision-makers
-                            </div>
-                        </div>
-                        
-                        <div class="tech-stack">
-                            <h4>Technologies Used</h4>
-                            <div class="tech-tags">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">Regression Models</span>
-                                <span class="tech-tag">Financial Analytics</span>
-                                <span class="tech-tag">Dashboard Development</span>
-                                <span class="tech-tag">SQL</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="expand-hint">Click to expand details</div>
                     </div>
                 </div>
                 
@@ -595,85 +165,9 @@
 
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            
-            // Detect if device is mobile
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
-            
-            // Expand card on click
-            $('.career-card').on('click', function(e) {
-                if ($(e.target).hasClass('close-btn')) return;
-                
-                const $card = $(this);
-                $card.addClass('expanded');
-                
-                // Prevent body scroll on mobile when card is expanded
-                if (isMobile) {
-                    $('body').addClass('modal-open');
-                }
-            });
-            
-            // Close expanded card
-            $('.close-btn').on('click', function() {
-                $('.career-card.expanded').removeClass('expanded');
-                $('body').removeClass('modal-open');
-            });
-            
-            // Close on escape key
-            $(document).on('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    $('.career-card.expanded').removeClass('expanded');
-                    $('body').removeClass('modal-open');
-                }
-            });
-            
-            // Close expanded card when clicking outside (with mobile considerations)
-            $(document).on('click', function(e) {
-                const $expandedCard = $('.career-card.expanded');
-                
-                // If there's an expanded card and the click is outside of it
-                if ($expandedCard.length > 0 && !$expandedCard.is(e.target) && $expandedCard.has(e.target).length === 0) {
-                    $expandedCard.removeClass('expanded');
-                    $('body').removeClass('modal-open');
-                }
-            });
-            
-            // Enhanced mobile experience: swipe down to close on mobile
-            if (isMobile) {
-                let startY = 0;
-                let currentY = 0;
-                
-                $(document).on('touchstart', '.career-card.expanded', function(e) {
-                    startY = e.originalEvent.touches[0].clientY;
-                });
-                
-                $(document).on('touchmove', '.career-card.expanded', function(e) {
-                    currentY = e.originalEvent.touches[0].clientY;
-                    const deltaY = currentY - startY;
-                    
-                    // If swiping down more than 50px, add visual feedback
-                    if (deltaY > 50) {
-                        $(this).css('transform', `translateY(${deltaY * 0.3}px) scale(${1.02 - deltaY * 0.0005})`);
-                    }
-                });
-                
-                $(document).on('touchend', '.career-card.expanded', function(e) {
-                    const deltaY = currentY - startY;
-                    
-                    // If swiped down more than 100px, close the card
-                    if (deltaY > 100) {
-                        $(this).removeClass('expanded');
-                        $('body').removeClass('modal-open');
-                    }
-                    
-                    // Reset transform
-                    $(this).css('transform', '');
-                    startY = 0;
-                    currentY = 0;
-                });
-            }
-        });
-    </script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

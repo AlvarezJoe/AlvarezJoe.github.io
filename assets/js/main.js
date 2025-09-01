@@ -212,21 +212,100 @@
 
 	// Experience page expandable cards
 	$(document).ready(function() {
-		$('.career-card').click(function() {
-			const card = $(this);
-			const details = card.siblings('.career-details');
-			const isExpanded = card.attr('data-expanded') === 'true';
+		// Detect if device is mobile
+		const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+		
+		// Expand card on click
+		$('.career-card').on('click', function(e) {
+			if ($(e.target).hasClass('close-btn')) return;
 			
-			// Close all other cards
-			$('.career-card').attr('data-expanded', 'false');
-			$('.career-details').removeClass('expanded').slideUp(300);
+			const $card = $(this);
+			$card.addClass('expanded');
 			
-			// Toggle current card
-			if (!isExpanded) {
-				card.attr('data-expanded', 'true');
-				details.addClass('expanded').slideDown(300);
+			// Prevent body scroll on mobile when card is expanded
+			if (isMobile) {
+				$('body').addClass('modal-open');
 			}
 		});
+		
+		// Close expanded card
+		$('.close-btn').on('click', function() {
+			$('.career-card.expanded').removeClass('expanded');
+			$('body').removeClass('modal-open');
+		});
+		
+		// Close on escape key
+		$(document).on('keydown', function(e) {
+			if (e.key === 'Escape') {
+				$('.career-card.expanded').removeClass('expanded');
+				$('body').removeClass('modal-open');
+			}
+		});
+		
+		// Close expanded card when clicking outside (with mobile considerations)
+		$(document).on('click', function(e) {
+			const $expandedCard = $('.career-card.expanded');
+			
+			// If there's an expanded card and the click is outside of it
+			if ($expandedCard.length > 0 && !$expandedCard.is(e.target) && $expandedCard.has(e.target).length === 0) {
+				$expandedCard.removeClass('expanded');
+				$('body').removeClass('modal-open');
+			}
+		});
+		
+		// Enhanced mobile experience: swipe down to close on mobile
+		if (isMobile) {
+			let startY = 0;
+			let currentY = 0;
+			
+			$(document).on('touchstart', '.career-card.expanded', function(e) {
+				startY = e.originalEvent.touches[0].clientY;
+			});
+			
+			$(document).on('touchmove', '.career-card.expanded', function(e) {
+				currentY = e.originalEvent.touches[0].clientY;
+				const deltaY = currentY - startY;
+				
+				// If swiping down more than 50px, add visual feedback
+				if (deltaY > 50) {
+					$(this).css('transform', `translateY(${deltaY * 0.3}px) scale(${1.02 - deltaY * 0.0005})`);
+				}
+			});
+			
+			$(document).on('touchend', '.career-card.expanded', function(e) {
+				const deltaY = currentY - startY;
+				
+				// If swiped down more than 100px, close the card
+				if (deltaY > 100) {
+					$(this).removeClass('expanded');
+					$('body').removeClass('modal-open');
+				}
+				
+				// Reset transform
+				$(this).css('transform', '');
+				startY = 0;
+				currentY = 0;
+			});
+		}
+	});
+
+	// Experience achievements collapsible functionality
+	$(document).on('click', '.achievements-toggle', function() {
+		const $toggle = $(this);
+		const $content = $toggle.siblings('.achievements-content');
+		const $icon = $toggle.find('.toggle-icon');
+		
+		// Toggle the expanded class
+		$content.toggleClass('expanded');
+		
+		// Update the icon with smooth rotation
+		if ($content.hasClass('expanded')) {
+			$icon.text('−');
+			$icon.css('transform', 'rotate(180deg) scale(1.1)');
+		} else {
+			$icon.text('+');
+			$icon.css('transform', 'rotate(0deg) scale(1)');
+		}
 	});
 
 })(jQuery);
