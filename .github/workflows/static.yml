@@ -131,7 +131,7 @@ jobs:
       
       - name: Lint and auto-fix SCSS
         run: |
-          npx stylelint "**/*.scss" --syntax scss --fix || true
+          npx stylelint "**/*.scss" --fix || true
           echo "SCSS linting completed (non-blocking)"
       
       - name: Lint JavaScript
@@ -141,19 +141,6 @@ jobs:
       
       - name: Compile SCSS (validation)
         run: npx sass assets/sass/main.scss:assets/css/main-compiled.css --no-source-map
-      
-      - name: Commit auto-fixes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -A
-          if ! git diff --cached --quiet; then
-            git commit -m "Auto-fix linting and formatting issues"
-            git push
-          else
-            echo "No changes to commit"
-          fi
-        continue-on-error: true
 
   # Deploy job (only runs on main branch)
   deploy:
