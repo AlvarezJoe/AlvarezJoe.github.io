@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Skills - Joe Alvarez</title>
+    <meta name="description" content="Technical skills and expertise of Joe Alvarez in data science, machine learning, and MLOps." />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --secondary-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --text-dark: #2c3e50;
+            --background-light: #f8f9fa;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--background-light);
+            padding-top: 80px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 4rem 0;
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Skills Overview */
+        .skills-overview {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .skill-category {
+            background: var(--background-light);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .skill-category p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-level {
+            font-size: 0.9rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-weight: 600;
+        }
+
+        .expert {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .advanced {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .intermediate {
+            background: var(--warning-color);
+            color: white;
+        }
+
+        /* Technical Proficiency */
+        .tech-proficiency {
+            padding: 4rem 0;
+            background: var(--background-light);
+        }
+
+        .proficiency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .proficiency-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .skill-bar {
+            margin-bottom: 2rem;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-name {
+            font-weight: 600;
+        }
+
+        .skill-percentage {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), var(--success-color));
+            border-radius: 5px;
+            transition: width 2s ease-in-out;
+        }
+
+        /* Certifications */
+        .certifications {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            background: var(--background-light);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .cert-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .cert-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .cert-issuer {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .cert-year {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .proficiency-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Joe Alvarez</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="skills.html" class="nav-link active">Skills</a></li>
+                <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+                <li><a href="experience.html" class="nav-link">Experience</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Technical Skills</h1>
+            <p class="page-subtitle">Expertise across the full ML lifecycle</p>
+        </div>
+    </section>
+
+    <!-- Skills Overview -->
+    <section class="skills-overview">
+        <div class="container">
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-icon">🧠</div>
+                    <h3>Machine Learning & AI</h3>
+                    <p>Advanced expertise in ML algorithms, deep learning, and AI systems</p>
+                    <ul class="skill-list">
+                        <li>Machine Learning <span class="skill-level expert">Expert</span></li>
+                        <li>Deep Learning <span class="skill-level expert">Expert</span></li>
+                        <li>Natural Language Processing <span class="skill-level advanced">Advanced</span></li>
+                        <li>Large Language Models <span class="skill-level advanced">Advanced</span></li>
+                        <li>Computer Vision <span class="skill-level intermediate">Intermediate</span></li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>MLOps & Engineering</h3>
+                    <p>Production ML systems, CI/CD, and scalable infrastructure</p>
+                    <ul class="skill-list">
+                        <li>CI/CD Pipelines <span class="skill-level expert">Expert</span></li>
+                        <li>Docker & Kubernetes <span class="skill-level advanced">Advanced</span></li>
+                        <li>Apache Spark <span class="skill-level expert">Expert</span></li>
+                        <li>MLflow & Model Management <span class="skill-level advanced">Advanced</span></li>
+                        <li>A/B Testing <span class="skill-level advanced">Advanced</span></li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">☁️</div>
+                    <h3>Cloud & Data Platforms</h3>
+                    <p>Scalable cloud solutions and big data processing</p>
+                    <ul class="skill-list">
+                        <li>Amazon Web Services <span class="skill-level expert">Expert</span></li>
+                        <li>Databricks <span class="skill-level expert">Expert</span></li>
+                        <li>Palantir Foundry <span class="skill-level expert">Expert</span></li>
+                        <li>Snowflake <span class="skill-level advanced">Advanced</span></li>
+                        <li>Google Cloud Platform <span class="skill-level intermediate">Intermediate</span></li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">💻</div>
+                    <h3>Programming & Tools</h3>
+                    <p>Full-stack development and data analysis tools</p>
+                    <ul class="skill-list">
+                        <li>Python <span class="skill-level expert">Expert</span></li>
+                        <li>SQL <span class="skill-level expert">Expert</span></li>
+                        <li>R <span class="skill-level advanced">Advanced</span></li>
+                        <li>Git & Version Control <span class="skill-level expert">Expert</span></li>
+                        <li>JavaScript <span class="skill-level intermediate">Intermediate</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Proficiency -->
+    <section class="tech-proficiency">
+        <div class="container">
+            <h2 class="section-title">Technical Proficiency</h2>
+            <div class="proficiency-grid">
+                <div class="proficiency-section">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">Python</span>
+                            <span class="skill-percentage">95%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">SQL</span>
+                            <span class="skill-percentage">90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">R</span>
+                            <span class="skill-percentage">80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">Scala</span>
+                            <span class="skill-percentage">70%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proficiency-section">
+                    <h3>ML Frameworks</h3>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">TensorFlow</span>
+                            <span class="skill-percentage">90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">PyTorch</span>
+                            <span class="skill-percentage">85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">Scikit-learn</span>
+                            <span class="skill-percentage">95%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">XGBoost</span>
+                            <span class="skill-percentage">90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proficiency-section">
+                    <h3>Cloud Platforms</h3>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">AWS</span>
+                            <span class="skill-percentage">90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">Databricks</span>
+                            <span class="skill-percentage">95%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">Google Cloud</span>
+                            <span class="skill-percentage">75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">Azure</span>
+                            <span class="skill-percentage">70%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 70%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proficiency-section">
+                    <h3>Data Engineering</h3>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">Apache Spark</span>
+                            <span class="skill-percentage">90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">Airflow</span>
+                            <span class="skill-percentage">85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">Kafka</span>
+                            <span class="skill-percentage">75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span class="skill-name">dbt</span>
+                            <span class="skill-percentage">80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications & Recognition</h2>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-logo">☁️</div>
+                    <div class="cert-title">AWS Certified Solutions Architect</div>
+                    <div class="cert-issuer">Amazon Web Services</div>
+                    <div class="cert-year">2024</div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-logo">🧠</div>
+                    <div class="cert-title">TensorFlow Developer Certificate</div>
+                    <div class="cert-issuer">Google</div>
+                    <div class="cert-year">2023</div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-logo">⚡</div>
+                    <div class="cert-title">Databricks Certified ML Engineer</div>
+                    <div class="cert-issuer">Databricks</div>
+                    <div class="cert-year">2023</div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-logo">📊</div>
+                    <div class="cert-title">Data Science Specialization</div>
+                    <div class="cert-issuer">Johns Hopkins University</div>
+                    <div class="cert-year">2022</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script>
+        // Animate progress bars when they come into view
+        $(document).ready(function() {
+            function animateProgressBars() {
+                $('.skill-bar').each(function() {
+                    var $progressBar = $(this);
+                    var $progressFill = $progressBar.find('.progress-fill');
+                    var targetWidth = $progressFill.css('width');
+                    
+                    $progressFill.css('width', '0%');
+                    
+                    setTimeout(function() {
+                        $progressFill.css('width', targetWidth);
+                    }, 500);
+                });
+            }
+
+            // Trigger animation on page load
+            setTimeout(animateProgressBars, 1000);
+        });
+    </script>
+</body>
+</html>
