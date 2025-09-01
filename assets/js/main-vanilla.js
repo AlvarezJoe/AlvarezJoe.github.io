@@ -57,6 +57,7 @@
         initSmoothScrolling();
         initNavbarScroll();
         initSchemaModal();
+        initPagePreloader();
     });
 
     // Portfolio Filter System
@@ -233,6 +234,88 @@
                 updateCarousel();
             });
         });
+    }
+
+    // Page Preloader - Preload pages on hover for faster navigation
+    function initPagePreloader() {
+        const preloadedPages = new Set();
+        const HOVER_DELAY = 150;
+        const MAX_PRELOADS = 3;
+        let currentPreloads = 0;
+
+        // Get navigation links
+        const navLinks = document.querySelectorAll('.nav-link, .btn-primary');
+        
+        navLinks.forEach(function(link) {
+            let hoverTimeout;
+            
+            link.addEventListener('mouseenter', function() {
+                const href = this.getAttribute('href');
+                
+                if (href && 
+                    href.endsWith('.html') && 
+                    !href.startsWith('http') && 
+                    !href.startsWith('mailto:') &&
+                    !preloadedPages.has(href) &&
+                    currentPreloads < MAX_PRELOADS) {
+                    
+                    hoverTimeout = setTimeout(function() {
+                        preloadPage(href);
+                    }, HOVER_DELAY);
+                }
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                if (hoverTimeout) {
+                    clearTimeout(hoverTimeout);
+                }
+            });
+        });
+
+        function preloadPage(url) {
+            if (preloadedPages.has(url) || currentPreloads >= MAX_PRELOADS) {
+                return;
+            }
+
+            preloadedPages.add(url);
+            currentPreloads++;
+
+            const linkElement = document.createElement('link');
+            linkElement.rel = 'prefetch';
+            linkElement.href = url;
+            linkElement.as = 'document';
+            
+            linkElement.onload = function() {
+                currentPreloads--;
+            };
+            
+            linkElement.onerror = function() {
+                currentPreloads--;
+                preloadedPages.delete(url);
+            };
+            
+            document.head.appendChild(linkElement);
+        }
+
+        // Preload most likely next pages after initial load
+        setTimeout(function() {
+            const currentPage = window.location.pathname;
+            let preloadTargets = [];
+
+            if (currentPage.includes('index.html') || currentPage === '/' || currentPage.endsWith('/')) {
+                preloadTargets = ['portfolio.html', 'about.html'];
+            } else if (currentPage.includes('portfolio.html')) {
+                preloadTargets = ['experience.html', 'contact.html'];
+            } else if (currentPage.includes('about.html')) {
+                preloadTargets = ['skills.html', 'portfolio.html'];
+            }
+
+            preloadTargets.forEach(function(target) {
+                setTimeout(function() {
+                    preloadPage(target);
+                }, 500);
+            });
+        }, 2000);
     }
 
 })();
