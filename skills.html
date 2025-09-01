@@ -5,98 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <title>Skills - Joemichael Alvarez</title>
     <meta name="description" content="Technical skills and expertise of Joemichael Alvarez in data science, machine learning, and MLOps." />
+    <meta name="keywords" content="Skills, Machine Learning, MLOps, Python, Data Science, AI, Cloud Platforms, Programming" />
+    <meta name="author" content="Joemichael Alvarez" />
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-    <style>
-        /* Skills Overview */
-        .skills-overview {
-            padding: 4rem 0;
-            background: var(--background-warm);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        /* Card Styles - Matching Experience Page */
-        .skill-category {
-            background: var(--card-background);
-            border-radius: 20px;
-            padding: 2rem;
-            border: 2px solid var(--accent-color);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(43, 124, 133, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        /* Gradient top bar */
-        .skill-category::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, var(--accent-color), #4a9ca8);
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(43, 124, 133, 0.2);
-        }
-
-        .skill-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-
-        .skill-category h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .skill-category p {
-            color: #666;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .skill-list {
-            list-style: none;
-            text-align: left;
-            margin: 0;
-            padding: 0;
-        }
-
-        .skill-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(43, 124, 133, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--primary-color);
-            font-size: 0.9rem;
-        }
-
-        .skill-list li:last-child {
-            border-bottom: none;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -125,7 +39,6 @@
     <!-- Skills Overview -->
     <section class="skills-overview">
         <div class="container">
-            <h2 class="section-title">Core Competencies</h2>
             <div class="skills-grid">
                 <div class="skill-category">
                     <div class="skill-icon">🤖</div>
@@ -182,5 +95,9 @@
 
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -114,4 +114,119 @@
 
 			});
 
+	// ===========================
+	// HOME PAGE FUNCTIONALITY
+	// ===========================
+	
+	// Mobile menu toggle for home page
+	$(document).ready(function() {
+		$('.nav-toggle').click(function() {
+			$('.nav-menu').toggleClass('active');
+		});
+
+		// Close menu when clicking on a link
+		$('.nav-link').click(function() {
+			$('.nav-menu').removeClass('active');
+		});
+	});
+
+	// ===========================
+	// PORTFOLIO PAGE FUNCTIONALITY
+	// ===========================
+	
+	$(document).ready(function() {
+		// Filter functionality
+		$('.tab-btn').click(function() {
+			var filter = $(this).data('filter');
+			
+			// Update active tab
+			$('.tab-btn').removeClass('active');
+			$(this).addClass('active');
+			
+			// Filter projects
+			if (filter === 'all') {
+				$('.project-card').show();
+			} else {
+				$('.project-card').hide();
+				$('.project-card[data-category="' + filter + '"]').show();
+			}
+		});
+
+		// Carousel functionality
+		let currentSlide = 0;
+		const totalSlides = $('.carousel-slide').length;
+		
+		function showSlide(index) {
+			$('.carousel-slide').removeClass('active');
+			$('.indicator').removeClass('active');
+			
+			$('.carousel-slide').eq(index).addClass('active');
+			$('.indicator').eq(index).addClass('active');
+		}
+		
+		function nextSlide() {
+			currentSlide = (currentSlide + 1) % totalSlides;
+			showSlide(currentSlide);
+		}
+		
+		// Auto-rotate carousel every 4 seconds
+		if (totalSlides > 0) {
+			setInterval(nextSlide, 4000);
+		}
+		
+		// Manual indicator clicks
+		$('.indicator').click(function() {
+			currentSlide = $(this).data('slide');
+			showSlide(currentSlide);
+		});
+	});
+
+	// Schema Modal Functions
+	let savedScrollPosition = 0;
+	
+	function openSchemaModal() {
+		savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+		document.getElementById('schemaModal').style.display = 'block';
+		document.body.style.overflow = 'hidden';
+		document.body.style.position = 'fixed';
+		document.body.style.top = `-${savedScrollPosition}px`;
+		document.body.style.width = '100%';
+	}
+
+	function closeSchemaModal() {
+		document.getElementById('schemaModal').style.display = 'none';
+		document.body.style.overflow = 'auto';
+		document.body.style.position = 'static';
+		document.body.style.top = 'auto';
+		document.body.style.width = 'auto';
+		window.scrollTo(0, savedScrollPosition);
+	}
+
+	// Close modal when clicking outside the image
+	window.onclick = function(event) {
+		const modal = document.getElementById('schemaModal');
+		if (event.target === modal) {
+			closeSchemaModal();
+		}
+	}
+
+	// Experience page expandable cards
+	$(document).ready(function() {
+		$('.career-card').click(function() {
+			const card = $(this);
+			const details = card.siblings('.career-details');
+			const isExpanded = card.attr('data-expanded') === 'true';
+			
+			// Close all other cards
+			$('.career-card').attr('data-expanded', 'false');
+			$('.career-details').removeClass('expanded').slideUp(300);
+			
+			// Toggle current card
+			if (!isExpanded) {
+				card.attr('data-expanded', 'true');
+				details.addClass('expanded').slideDown(300);
+			}
+		});
+	});
+
 })(jQuery);
