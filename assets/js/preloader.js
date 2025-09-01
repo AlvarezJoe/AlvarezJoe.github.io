@@ -77,7 +77,7 @@
             
             linkElement.onload = function() {
                 currentPreloads--;
-                console.log('Preloaded:', url);
+                // console.log('Preloaded:', url);
             };
             
             linkElement.onerror = function() {
@@ -97,7 +97,7 @@
             .then(function(response) {
                 currentPreloads--;
                 if (response.ok) {
-                    console.log('Preloaded via fetch:', url);
+                    // console.log('Preloaded via fetch:', url);
                 } else {
                     preloadedPages.delete(url); // Allow retry
                 }

@@ -1,0 +1,77 @@
+name: Code Quality, Test & Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  quality-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Run linting
+      run: make lint
+      
+    - name: Run tests
+      run: make test
+      
+    - name: Check formatting
+      run: make check
+      
+    - name: Auto-format code (if needed)
+      if: github.ref == 'refs/heads/main'
+      run: |
+        make format
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        if ! git diff --staged --quiet; then
+          git commit -m "🎨 Auto-format code [skip ci]"
+          git push
+        fi
+        
+  deploy:
+    needs: quality-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write
+      id-token: write
+      
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: '.'
+        
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4

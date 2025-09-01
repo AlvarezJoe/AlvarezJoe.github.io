@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "html-validate:recommended"
+  ],
+  "rules": {
+    "valid-id": "error",
+    "no-duplicate-id": "error",
+    "require-sri": "off",
+    "no-inline-style": "warn",
+    "require-lang": "error",
+    "wcag/h37": "error",
+    "wcag/h67": "error"
+  },
+  "elements": [
+    "html5"
+  ]
+}
