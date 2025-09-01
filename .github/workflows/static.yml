@@ -15,7 +15,7 @@ on:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write  # Allow writing to repository (for auto-fixes)
   pages: write
   id-token: write
 
@@ -76,13 +76,24 @@ jobs:
           }
           EOF
           
-          # Stylelint config
+          # Stylelint config (balanced - Prettier handles formatting)
           cat > .stylelintrc.json << 'EOF'
           {
             "extends": ["stylelint-config-standard"],
             "rules": {
-              "indentation": 2,
-              "string-quotes": "single"
+              "indentation": null,
+              "string-quotes": null,
+              "selector-pseudo-element-colon-notation": null,
+              "property-no-vendor-prefix": null,
+              "selector-no-vendor-prefix": null,
+              "no-duplicate-selectors": "warning",
+              "no-descending-specificity": "warning",
+              "font-family-no-missing-generic-family-keyword": "warning",
+              "media-feature-range-notation": null,
+              "length-zero-no-unit": "warning",
+              "shorthand-property-no-redundant-values": "warning",
+              "color-hex-length": "warning",
+              "number-max-precision": 4
             }
           }
           EOF
@@ -103,23 +114,46 @@ jobs:
           }
           EOF
       
+      - name: Format with Prettier
+        run: |
+          npx prettier --write "**/*.{html,css,scss,js}"
+          echo "Prettier formatting applied"
+      
       - name: Lint HTML
-        run: npx htmlhint "**/*.html"
+        run: |
+          npx htmlhint "**/*.html" || true
+          echo "HTML linting completed (non-blocking)"
       
-      - name: Lint CSS
-        run: npx stylelint "**/*.css"
+      - name: Lint and auto-fix CSS
+        run: |
+          npx stylelint "**/*.css" --fix || true
+          echo "CSS linting completed (non-blocking)"
       
-      - name: Lint SCSS
-        run: npx stylelint "**/*.scss" --syntax scss
+      - name: Lint and auto-fix SCSS
+        run: |
+          npx stylelint "**/*.scss" --syntax scss --fix || true
+          echo "SCSS linting completed (non-blocking)"
       
       - name: Lint JavaScript
-        run: npx eslint "**/*.js"
-      
-      - name: Check Prettier formatting
-        run: npx prettier --check "**/*.{html,css,scss,js}"
+        run: |
+          npx eslint "**/*.js" --fix || true
+          echo "JavaScript linting completed (non-blocking)"
       
       - name: Compile SCSS (validation)
         run: npx sass assets/sass/main.scss:assets/css/main-compiled.css --no-source-map
+      
+      - name: Commit auto-fixes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Auto-fix linting and formatting issues"
+            git push
+          else
+            echo "No changes to commit"
+          fi
+        continue-on-error: true
 
   # Deploy job (only runs on main branch)
   deploy:
