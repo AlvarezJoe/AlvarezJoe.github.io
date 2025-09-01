@@ -53,15 +53,8 @@
             const $content = $this.next('.achievements-content');
             const $icon = $this.find('.toggle-icon');
             
-            // Toggle the expanded class instead of slideToggle
-            $content.toggleClass('expanded');
-            
-            // Use + and - symbols
-            if ($content.hasClass('expanded')) {
-                $icon.text('−'); // Minus when expanded
-            } else {
-                $icon.text('+'); // Plus when collapsed
-            }
+            $content.slideToggle(300);
+            $icon.text($icon.text() === '+' ? '−' : '+');
         });
     }
 
@@ -173,43 +166,6 @@
             $navbar.addClass('scrolled');
         } else {
             $navbar.removeClass('scrolled');
-        }
-    });
-
-    // Schema Modal Functions (Portfolio page)
-    let scrollPosition = 0;
-    
-    window.openSchemaModal = function() {
-        // Store current scroll position
-        scrollPosition = $(window).scrollTop();
-        
-        // Prevent background scrolling
-        $('body').css({
-            'position': 'fixed',
-            'top': -scrollPosition + 'px',
-            'width': '100%'
-        });
-        
-        $('#schemaModal').fadeIn(300);
-    };
-
-    window.closeSchemaModal = function() {
-        $('#schemaModal').fadeOut(300);
-        
-        // Restore scroll position and allow scrolling
-        $('body').css({
-            'position': '',
-            'top': '',
-            'width': ''
-        });
-        
-        $(window).scrollTop(scrollPosition);
-    };
-
-    // Close modal when clicking outside
-    $(window).on('click', function(e) {
-        if ($(e.target).is('#schemaModal')) {
-            closeSchemaModal();
         }
     });
 
