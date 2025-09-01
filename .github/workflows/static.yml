@@ -126,6 +126,20 @@ jobs:
         run: |
           npx eslint "**/*.js" --fix || true
           echo "JavaScript linting completed (non-blocking)"
+      
+      - name: Commit auto-fixes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Auto-fix formatting and linting issues [skip ci]"
+            git push
+            echo "Auto-fixes committed and pushed"
+          else
+            echo "No changes to commit"
+          fi
+        continue-on-error: true
 
   # Deploy job (only runs on main branch)
   deploy:
