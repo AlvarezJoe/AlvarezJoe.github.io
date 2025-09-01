@@ -17,9 +17,7 @@
 
   // Define images associated with each page
   const pageImageMap = {
-    'pages/about.html': [
-      'images/avatar.jpg'
-    ],
+    'pages/about.html': ['images/avatar.jpg'],
     'pages/portfolio.html': [
       'images/thumbs/NN_Thumbnail.jpg',
       'images/fulls/NN_Tuner.png',
@@ -28,13 +26,13 @@
       'images/thumbs/sentiment_analysis.png',
       'images/thumbs/google_play.png',
       'images/thumbs/movie_theater.jpg',
-      'images/fulls/movie_theater_diagram.png'
+      'images/fulls/movie_theater_diagram.png',
     ],
     'pages/experience.html': [],
     'pages/skills.html': [
-      'images/icons/Tableau.png' // If this icon is used
+      'images/icons/Tableau.png', // If this icon is used
     ],
-    'pages/contact.html': []
+    'pages/contact.html': [],
   };
 
   function ready(fn) {
@@ -104,7 +102,7 @@
       linkElement.onload = function () {
         currentPreloads--;
         // console.log('✅ Preloaded page:', url);
-        
+
         // After page is preloaded, preload its images
         preloadPageImages(url);
       };
@@ -147,17 +145,17 @@
     }
 
     // Prioritize thumbnail images first (visible immediately), then full images
-    const thumbnails = images.filter(img => img.includes('/thumbs/'));
-    const fullImages = images.filter(img => !img.includes('/thumbs/'));
-    
+    const thumbnails = images.filter((img) => img.includes('/thumbs/'));
+    const fullImages = images.filter((img) => !img.includes('/thumbs/'));
+
     // Preload thumbnails immediately
-    thumbnails.forEach(function(imagePath) {
+    thumbnails.forEach(function (imagePath) {
       preloadImage(imagePath);
     });
-    
+
     // Preload full images with a slight delay
-    setTimeout(function() {
-      fullImages.forEach(function(imagePath) {
+    setTimeout(function () {
+      fullImages.forEach(function (imagePath) {
         preloadImage(imagePath);
       });
     }, 200);
@@ -172,10 +170,10 @@
 
     // Use Image object for image preloading
     const img = new Image();
-    img.onload = function() {
+    img.onload = function () {
       // console.log('🖼️ Preloaded image:', imagePath);
     };
-    img.onerror = function() {
+    img.onerror = function () {
       preloadedImages.delete(imagePath); // Allow retry
       console.warn('Failed to preload image:', imagePath);
     };
@@ -203,7 +201,7 @@
       });
 
       // Also preload the avatar image immediately since it's commonly accessed
-      setTimeout(function() {
+      setTimeout(function () {
         preloadImage('images/avatar.jpg');
       }, 500);
     }
