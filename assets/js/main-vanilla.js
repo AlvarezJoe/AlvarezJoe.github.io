@@ -283,6 +283,7 @@
         return;
       }
 
+      console.log('Prefetching:', url); // Debug log
       preloadedPages.add(url);
       currentPreloads++;
 
@@ -292,10 +293,12 @@
       linkElement.as = 'document';
 
       linkElement.onload = function () {
+        console.log('Prefetch successful:', url); // Debug log
         currentPreloads--;
       };
 
       linkElement.onerror = function () {
+        console.log('Prefetch failed:', url); // Debug log
         currentPreloads--;
         preloadedPages.delete(url);
       };
@@ -313,11 +316,17 @@
         currentPage === '/' ||
         currentPage.endsWith('/')
       ) {
-        preloadTargets = ['portfolio.html', 'about.html'];
-      } else if (currentPage.includes('portfolio.html')) {
+        // When on home page, preload pages in the pages/ directory
+        preloadTargets = ['pages/portfolio.html', 'pages/about.html'];
+      } else if (currentPage.includes('/pages/portfolio.html')) {
+        // When on portfolio page, preload other pages in same directory
         preloadTargets = ['experience.html', 'contact.html'];
-      } else if (currentPage.includes('about.html')) {
+      } else if (currentPage.includes('/pages/about.html')) {
+        // When on about page, preload other pages in same directory
         preloadTargets = ['skills.html', 'portfolio.html'];
+      } else if (currentPage.includes('/pages/')) {
+        // For other pages in pages/ directory, preload relative to that directory
+        preloadTargets = ['portfolio.html', 'about.html'];
       }
 
       preloadTargets.forEach(function (target) {
@@ -325,6 +334,6 @@
           preloadPage(target);
         }, 500);
       });
-    }, 2000);
+    }, 3000); // Increased delay to 3 seconds to be less aggressive
   }
 })();

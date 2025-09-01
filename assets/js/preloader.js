@@ -1,6 +1,6 @@
 /*
  * Page Preloader
- * Preloads pages when user hovers over navigation links
+ * Preloads pages and their associated images when user hovers over navigation links
  */
 
 (function () {
@@ -8,11 +8,34 @@
 
   // Track what we've already preloaded to avoid duplicates
   const preloadedPages = new Set();
+  const preloadedImages = new Set();
 
   // Configuration
   const HOVER_DELAY = 150; // Wait 150ms before preloading (avoid accidental hovers)
-  const MAX_PRELOADS = 5; // Limit concurrent preloads
+  const MAX_PRELOADS = 8; // Increased to allow for images
   let currentPreloads = 0;
+
+  // Define images associated with each page
+  const pageImageMap = {
+    'pages/about.html': [
+      'images/avatar.jpg'
+    ],
+    'pages/portfolio.html': [
+      'images/thumbs/NN_Thumbnail.jpg',
+      'images/fulls/NN_Tuner.png',
+      'images/thumbs/tuning_deep_learning.png',
+      'images/thumbs/airbnb.jpeg',
+      'images/thumbs/sentiment_analysis.png',
+      'images/thumbs/google_play.png',
+      'images/thumbs/movie_theater.jpg',
+      'images/fulls/movie_theater_diagram.png'
+    ],
+    'pages/experience.html': [],
+    'pages/skills.html': [
+      'images/icons/Tableau.png' // If this icon is used
+    ],
+    'pages/contact.html': []
+  };
 
   function ready(fn) {
     if (document.readyState === 'loading') {
@@ -80,7 +103,10 @@
 
       linkElement.onload = function () {
         currentPreloads--;
-        // console.log('Preloaded:', url);
+        // console.log('✅ Preloaded page:', url);
+        
+        // After page is preloaded, preload its images
+        preloadPageImages(url);
       };
 
       linkElement.onerror = function () {
@@ -101,6 +127,7 @@
           currentPreloads--;
           if (response.ok) {
             // console.log('Preloaded via fetch:', url);
+            preloadPageImages(url);
           } else {
             preloadedPages.delete(url); // Allow retry
           }
@@ -113,11 +140,53 @@
     }
   }
 
+  function preloadPageImages(pageUrl) {
+    const images = pageImageMap[pageUrl];
+    if (!images || images.length === 0) {
+      return;
+    }
+
+    // Prioritize thumbnail images first (visible immediately), then full images
+    const thumbnails = images.filter(img => img.includes('/thumbs/'));
+    const fullImages = images.filter(img => !img.includes('/thumbs/'));
+    
+    // Preload thumbnails immediately
+    thumbnails.forEach(function(imagePath) {
+      preloadImage(imagePath);
+    });
+    
+    // Preload full images with a slight delay
+    setTimeout(function() {
+      fullImages.forEach(function(imagePath) {
+        preloadImage(imagePath);
+      });
+    }, 200);
+  }
+
+  function preloadImage(imagePath) {
+    if (preloadedImages.has(imagePath)) {
+      return;
+    }
+
+    preloadedImages.add(imagePath);
+
+    // Use Image object for image preloading
+    const img = new Image();
+    img.onload = function() {
+      // console.log('🖼️ Preloaded image:', imagePath);
+    };
+    img.onerror = function() {
+      preloadedImages.delete(imagePath); // Allow retry
+      console.warn('Failed to preload image:', imagePath);
+    };
+    img.src = imagePath;
+  }
+
   // Preload critical resources immediately
   function preloadCriticalResources() {
     const criticalPages = [
-      'portfolio.html', // Most likely next page from home
-      'about.html', // Common second page
+      'pages/portfolio.html', // Most likely next page from home
+      'pages/about.html', // Common second page
     ];
 
     // Only preload if we're on the homepage
@@ -132,6 +201,11 @@
           preloadPage(page);
         }, 1000);
       });
+
+      // Also preload the avatar image immediately since it's commonly accessed
+      setTimeout(function() {
+        preloadImage('images/avatar.jpg');
+      }, 500);
     }
   }
 
