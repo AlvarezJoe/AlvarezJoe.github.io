@@ -60,7 +60,48 @@
     initNavbarScroll();
     initSchemaModal();
     initPagePreloader();
+    initMobileNav();
   });
+
+  // Mobile Navigation Toggle
+  function initMobileNav() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const menuBackdrop = document.querySelector('.menu-backdrop');
+
+    if (!hamburger || !navMenu || !menuBackdrop) return;
+
+    hamburger.addEventListener('click', function () {
+      navMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+      menuBackdrop.classList.toggle('active');
+    });
+
+    // Close menu when clicking a nav link
+    navMenu.querySelectorAll('.nav-link').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+        menuBackdrop.classList.remove('active');
+      });
+    });
+
+    // Close menu when clicking backdrop
+    menuBackdrop.addEventListener('click', function () {
+      navMenu.classList.remove('active');
+      hamburger.classList.remove('active');
+      menuBackdrop.classList.remove('active');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function (e) {
+      if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+        menuBackdrop.classList.remove('active');
+      }
+    });
+  }
 
   // Portfolio Filter System
   function initPortfolioFilters() {
