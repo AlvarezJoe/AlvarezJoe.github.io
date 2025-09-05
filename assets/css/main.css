@@ -212,15 +212,24 @@ a:hover {
   color: #49bf9d !important;
 }
 
-/* Enhanced focus styles for accessibility */
-a:focus,
-button:focus,
-input:focus,
-textarea:focus,
-select:focus {
+/* Enhanced focus styles for accessibility - only show on keyboard navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
   outline: 3px solid var(--accent-color);
   outline-offset: 2px;
   border-radius: 3px;
+}
+
+/* Remove focus outline on mouse click */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+select:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* Skip to main content link for screen readers */
@@ -429,13 +438,21 @@ input[type='button']:hover,
   box-shadow: 0 5px 15px rgb(43 124 133 / 30%);
 }
 
-/* Enhanced focus states for buttons */
-input[type='submit']:focus,
-input[type='reset']:focus,
-input[type='button']:focus,
-.button:focus {
+/* Enhanced focus states for buttons - keyboard only */
+input[type='submit']:focus-visible,
+input[type='reset']:focus-visible,
+input[type='button']:focus-visible,
+.button:focus-visible {
   outline: 3px solid var(--tertiary-color);
   outline-offset: 2px;
+}
+
+/* Remove focus outline on mouse click for buttons */
+input[type='submit']:focus:not(:focus-visible),
+input[type='reset']:focus:not(:focus-visible),
+input[type='button']:focus:not(:focus-visible),
+.button:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* Loading state for form submissions */
@@ -727,10 +744,15 @@ input[type='button'].primary:hover {
   border-color: var(--secondary-color);
 }
 
-/* Enhanced focus state for interactive cards */
-.card:focus-within {
+/* Enhanced focus state for interactive cards - keyboard only */
+.card:focus-visible {
   outline: 3px solid var(--accent-color);
   outline-offset: 2px;
+}
+
+/* Remove focus outline on mouse click for cards */
+.card:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* Ensure cards have proper semantic structure */
@@ -738,9 +760,13 @@ input[type='button'].primary:hover {
   cursor: pointer;
 }
 
-.card[tabindex]:focus {
+.card[tabindex]:focus-visible {
   outline: 3px solid var(--accent-color);
   outline-offset: 2px;
+}
+
+.card[tabindex]:focus:not(:focus-visible) {
+  outline: none;
 }
 
 .card-icon {
