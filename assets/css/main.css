@@ -2407,7 +2407,7 @@ input[type='button'].primary:hover {
 }
 
 .form-message p {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.5rem;
 }
 
 .form-message p:last-child {

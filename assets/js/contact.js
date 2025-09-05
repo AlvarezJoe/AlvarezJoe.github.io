@@ -10,7 +10,7 @@
   const EMAILJS_CONFIG = {
     publicKey: 'Z6BOz6gaOClEPhabJ',
     serviceId: 'service_spsje28',
-    templateId: 'template_hoyf9e1'
+    templateId: 'template_hoyf9e1',
   };
 
   function ready(fn) {
@@ -44,24 +44,24 @@
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    
+
     const submitButton = e.target.querySelector('button[type="submit"]');
     const originalButtonText = submitButton.textContent;
-    
+
     // Clear any existing messages
     clearMessages();
-    
+
     // Get form data
     const formData = getFormData();
-    
+
     // Validate form
     if (!validateForm(formData)) {
       return;
     }
-    
+
     // Show loading state
     setLoadingState(submitButton, true);
-    
+
     // Send email via EmailJS
     sendEmail(formData)
       .then(() => {
@@ -93,22 +93,22 @@
       showFieldError('name', 'Name is required');
       return false;
     }
-    
+
     if (!data.email) {
       showFieldError('email', 'Email is required');
       return false;
     }
-    
+
     if (!isValidEmail(data.email)) {
       showFieldError('email', 'Please enter a valid email address');
       return false;
     }
-    
+
     if (!data.message) {
       showFieldError('message', 'Message is required');
       return false;
     }
-    
+
     return true;
   }
 
@@ -125,7 +125,11 @@
     );
   }
 
-  function setLoadingState(button, isLoading, originalText = 'Let\'s Collaborate') {
+  function setLoadingState(
+    button,
+    isLoading,
+    originalText = "Let's Collaborate"
+  ) {
     if (isLoading) {
       button.disabled = true;
       button.textContent = 'Sending...';
@@ -146,7 +150,7 @@
       <p>Thank you for reaching out. I'll get back to you as soon as possible.</p>
     `;
     form.parentNode.insertBefore(message, form);
-    
+
     // Auto-hide after 5 seconds
     setTimeout(() => {
       if (message.parentNode) {
@@ -164,7 +168,7 @@
       <p>Please try again or contact me directly at <a href="mailto:alvarez.joemichael@gmail.com">alvarez.joemichael@gmail.com</a></p>
     `;
     form.parentNode.insertBefore(message, form);
-    
+
     // Auto-hide after 10 seconds
     setTimeout(() => {
       if (message.parentNode) {
@@ -176,21 +180,21 @@
   function showFieldError(fieldId, message) {
     const field = document.getElementById(fieldId);
     const existingError = field.parentNode.querySelector('.form-error');
-    
+
     // Remove existing error
     if (existingError) {
       existingError.remove();
     }
-    
+
     // Add new error
     const errorElement = document.createElement('span');
     errorElement.className = 'form-error';
     errorElement.textContent = message;
     field.parentNode.appendChild(errorElement);
-    
+
     // Focus the field
     field.focus();
-    
+
     // Auto-hide after 5 seconds
     setTimeout(() => {
       if (errorElement.parentNode) {
@@ -202,7 +206,7 @@
   function clearMessages() {
     // Remove any existing messages
     const messages = document.querySelectorAll('.form-message, .form-error');
-    messages.forEach(msg => {
+    messages.forEach((msg) => {
       if (msg.parentNode) {
         msg.parentNode.removeChild(msg);
       }
@@ -213,5 +217,4 @@
     const form = document.getElementById('contact-form');
     form.reset();
   }
-
 })();
