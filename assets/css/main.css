@@ -2386,6 +2386,34 @@ input[type='button'].primary:hover {
   border-color: #27ae60;
 }
 
+/* Form messages */
+.form-message {
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  border: 2px solid;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.form-success {
+  background: #d4edda;
+  border-color: #27ae60;
+  color: #155724;
+}
+
+.form-success strong {
+  color: #155724;
+}
+
+.form-message p {
+  margin: 0 0 0.5rem 0;
+}
+
+.form-message p:last-child {
+  margin-bottom: 0;
+}
+
 /* Error message styling */
 .form-error {
   color: #e74c3c;
@@ -2394,12 +2422,23 @@ input[type='button'].primary:hover {
   display: block;
 }
 
-/* Success message styling */
-.form-success {
-  color: #27ae60;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
-  display: block;
+.form-message.form-error {
+  background: #f8d7da;
+  border-color: #e74c3c;
+  color: #721c24;
+}
+
+.form-message.form-error strong {
+  color: #721c24;
+}
+
+.form-message.form-error a {
+  color: #721c24;
+  text-decoration: underline;
+}
+
+.form-message.form-error a:hover {
+  color: #e74c3c;
 }
 
 .form-group textarea {
