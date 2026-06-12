@@ -34,8 +34,8 @@ python -m http.server 8000    # Starts server at http://localhost:8000
 ## Contact
 
 <br>
-<a href="mailto:joemichael.alvarez@gmail.com" target="_blank">
-	<img src="https://img.shields.io/badge/email-joemichael.alvarez@gmail.com-d14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Badge" />
+<a href="mailto:alvarez.joemichael@gmail.com" target="_blank">
+	<img src="https://img.shields.io/badge/email-alvarez.joemichael@gmail.com-d14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Badge" />
 </a>
 &nbsp;
 <a href="https://www.linkedin.com/in/alvarezjoemichael/" target="_blank">
