@@ -638,8 +638,7 @@ input[type='button'].primary:hover {
   letter-spacing: 0.01em;
   font-size: 1.1rem;
   padding: 0.72rem 1.3rem;
-  transition:
-    color var(--motion-duration-fast) var(--motion-ease-standard);
+  transition: color var(--motion-duration-fast) var(--motion-ease-standard);
   border-bottom: none;
 }
 
@@ -653,8 +652,7 @@ input[type='button'].primary:hover {
   background: var(--accent-color);
   transform: scaleX(0);
   transform-origin: center;
-  transition:
-    transform var(--motion-duration-fast) var(--motion-ease-standard);
+  transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
 }
 
 .nav-link:hover {
@@ -2301,8 +2299,7 @@ input[type='button'].primary:hover {
 .achievements-content {
   max-height: 0;
   overflow: hidden;
-  transition:
-    max-height var(--motion-duration-base) var(--motion-ease-standard);
+  transition: max-height var(--motion-duration-base) var(--motion-ease-standard);
 }
 
 .achievements-content.expanded {
