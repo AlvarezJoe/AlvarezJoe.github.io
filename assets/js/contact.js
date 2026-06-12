@@ -177,7 +177,9 @@
     heading.appendChild(strong);
 
     const detail = document.createElement('p');
-    detail.appendChild(document.createTextNode('Please try again or contact me directly at '));
+    detail.appendChild(
+      document.createTextNode('Please try again or contact me directly at ')
+    );
 
     const emailLink = document.createElement('a');
     emailLink.href = 'mailto:alvarez.joemichael@gmail.com';
