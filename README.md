@@ -1,6 +1,6 @@
 # Joemichael Alvarez
 
-> Senior Data Scientist & MLOps Engineer Portfolio
+> AI Development Lead / Manager Portfolio
 
 [![Live Site](https://img.shields.io/badge/live-alvarezjoe.github.io-blue)](https://alvarezjoe.github.io)
 &nbsp;
@@ -8,7 +8,7 @@
 
 ## About
 
-Professional portfolio showcasing data science projects and machine learning expertise.
+Professional portfolio showcasing machine learning, MLOps, and enterprise AI platform work.
 
 ## Development
 
@@ -38,6 +38,6 @@ python -m http.server 8000    # Starts server at http://localhost:8000
 	<img src="https://img.shields.io/badge/email-joemichael.alvarez@gmail.com-d14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Badge" />
 </a>
 &nbsp;
-<a href="https://linkedin.com/in/joemichael-alvarez" target="_blank">
-	<img src="https://img.shields.io/badge/linkedin-joemichael--alvarez-0077b5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge" />
+<a href="https://www.linkedin.com/in/alvarezjoemichael/" target="_blank">
+	<img src="https://img.shields.io/badge/linkedin-alvarezjoemichael-0077b5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge" />
 </a>

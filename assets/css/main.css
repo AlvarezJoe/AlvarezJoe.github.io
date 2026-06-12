@@ -1255,14 +1255,25 @@ input[type='button'].primary:hover {
 
 .about-text h2 {
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
   color: var(--primary-color);
+}
+
+.about-text {
+  max-width: 68ch;
 }
 
 .about-text p {
   font-size: 1.1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.15rem;
   color: #555;
+  line-height: 1.7;
+}
+
+.about-text .about-lead {
+  font-size: 1.16rem;
+  line-height: 1.72;
+  color: #3e4b57;
 }
 
 /* Journey Section */
@@ -2023,8 +2034,11 @@ input[type='button'].primary:hover {
 .experience-description {
   font-size: 1.1rem;
   color: #666;
-  line-height: 1.6;
+  line-height: 1.65;
   margin-bottom: 2rem;
+  max-width: 52ch;
+  border-left: 3px solid rgb(43 124 133 / 55%);
+  padding: 0.2rem 0 0.2rem 0.85rem;
 }
 
 .achievements h5 {
@@ -2098,6 +2112,7 @@ input[type='button'].primary:hover {
   color: #555;
   font-size: 1rem;
   line-height: 1.5;
+  max-width: 58ch;
 }
 
 .achievements li::before {
@@ -2167,6 +2182,8 @@ input[type='button'].primary:hover {
     font-size: 1rem;
     margin-bottom: 1.5rem;
     line-height: 1.5;
+    max-width: 100%;
+    padding: 0.15rem 0 0.15rem 0.7rem;
   }
 
   .achievements-toggle {
