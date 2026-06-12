@@ -71,34 +71,48 @@
 
     if (!hamburger || !navMenu || !menuBackdrop) return;
 
+    function setMenuState(isOpen) {
+      navMenu.classList.toggle('active', isOpen);
+      hamburger.classList.toggle('active', isOpen);
+      menuBackdrop.classList.toggle('active', isOpen);
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+    }
+
     hamburger.addEventListener('click', function () {
-      navMenu.classList.toggle('active');
-      hamburger.classList.toggle('active');
-      menuBackdrop.classList.toggle('active');
+      const isOpen = !navMenu.classList.contains('active');
+      setMenuState(isOpen);
+    });
+
+    hamburger.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const isOpen = !navMenu.classList.contains('active');
+        setMenuState(isOpen);
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        setMenuState(false);
+      }
     });
 
     // Close menu when clicking a nav link
     navMenu.querySelectorAll('.nav-link').forEach(function (link) {
       link.addEventListener('click', function () {
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-        menuBackdrop.classList.remove('active');
+        setMenuState(false);
       });
     });
 
     // Close menu when clicking backdrop
     menuBackdrop.addEventListener('click', function () {
-      navMenu.classList.remove('active');
-      hamburger.classList.remove('active');
-      menuBackdrop.classList.remove('active');
+      setMenuState(false);
     });
 
     // Close menu when clicking outside
     document.addEventListener('click', function (e) {
       if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-        menuBackdrop.classList.remove('active');
+        setMenuState(false);
       }
     });
   }
@@ -137,19 +151,40 @@
   function initCollapsibleAchievements() {
     const toggleButtons = document.querySelectorAll('.achievements-toggle');
 
-    toggleButtons.forEach(function (button) {
-      button.addEventListener('click', function () {
-        const content = this.nextElementSibling;
-        const icon = this.querySelector('.toggle-icon');
+    toggleButtons.forEach(function (button, index) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('.toggle-icon');
 
-        if (content && content.classList.contains('achievements-content')) {
-          toggleClass(content, 'expanded');
+      if (!content || !content.classList.contains('achievements-content')) {
+        return;
+      }
 
-          if (hasClass(content, 'expanded')) {
-            icon.textContent = '−'; // Minus when expanded
-          } else {
-            icon.textContent = '+'; // Plus when collapsed
-          }
+      const contentId = `achievements-content-${index}`;
+      button.setAttribute('role', 'button');
+      button.setAttribute('tabindex', '0');
+      button.setAttribute('aria-controls', contentId);
+      button.setAttribute('aria-expanded', 'false');
+      content.setAttribute('id', contentId);
+
+      if (icon) {
+        icon.setAttribute('aria-hidden', 'true');
+      }
+
+      function toggleAchievements() {
+        toggleClass(content, 'expanded');
+        const isExpanded = hasClass(content, 'expanded');
+        button.setAttribute('aria-expanded', String(isExpanded));
+
+        if (icon) {
+          icon.textContent = isExpanded ? '−' : '+';
+        }
+      }
+
+      button.addEventListener('click', toggleAchievements);
+      button.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleAchievements();
         }
       });
     });
