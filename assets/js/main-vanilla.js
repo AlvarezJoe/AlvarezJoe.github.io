@@ -228,13 +228,27 @@
     const navbar = document.querySelector('.navbar');
 
     if (navbar) {
-      window.addEventListener('scroll', function () {
+      let ticking = false;
+
+      function updateNavbarState() {
         if (window.scrollY > 50) {
           addClass(navbar, 'scrolled');
         } else {
           removeClass(navbar, 'scrolled');
         }
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            updateNavbarState();
+            ticking = false;
+          });
+          ticking = true;
+        }
       });
+
+      updateNavbarState();
     }
   }
 
@@ -311,6 +325,10 @@
     let currentSlide = 0;
     const slides = carousel.querySelectorAll('.carousel-slide');
     const indicators = carousel.querySelectorAll('.indicator');
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+    let autoAdvanceId = null;
 
     if (slides.length === 0) return;
 
@@ -332,11 +350,36 @@
       }
     }
 
-    // Auto-advance carousel
-    setInterval(function () {
-      currentSlide = (currentSlide + 1) % slides.length;
-      updateCarousel();
-    }, 4000);
+    function startAutoAdvance() {
+      if (prefersReducedMotion || slides.length < 2 || autoAdvanceId !== null) {
+        return;
+      }
+
+      autoAdvanceId = window.setInterval(function () {
+        currentSlide = (currentSlide + 1) % slides.length;
+        updateCarousel();
+      }, 4000);
+    }
+
+    function stopAutoAdvance() {
+      if (autoAdvanceId !== null) {
+        clearInterval(autoAdvanceId);
+        autoAdvanceId = null;
+      }
+    }
+
+    startAutoAdvance();
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        stopAutoAdvance();
+      } else {
+        startAutoAdvance();
+      }
+    });
+
+    carousel.addEventListener('mouseenter', stopAutoAdvance);
+    carousel.addEventListener('mouseleave', startAutoAdvance);
 
     // Indicator click handlers
     indicators.forEach(function (indicator, index) {
