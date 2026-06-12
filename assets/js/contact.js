@@ -29,7 +29,6 @@
   function initEmailJS() {
     if (typeof emailjs !== 'undefined') {
       emailjs.init(EMAILJS_CONFIG.publicKey);
-      console.log('EmailJS initialized successfully');
     } else {
       console.error('EmailJS library not loaded');
     }
@@ -145,10 +144,18 @@
     const form = document.getElementById('contact-form');
     const message = document.createElement('div');
     message.className = 'form-message form-success';
-    message.innerHTML = `
-      <p><strong>✅ Message sent successfully!</strong></p>
-      <p>Thank you for reaching out. I'll get back to you as soon as possible.</p>
-    `;
+
+    const heading = document.createElement('p');
+    const strong = document.createElement('strong');
+    strong.textContent = '✅ Message sent successfully!';
+    heading.appendChild(strong);
+
+    const detail = document.createElement('p');
+    detail.textContent =
+      "Thank you for reaching out. I'll get back to you as soon as possible.";
+
+    message.appendChild(heading);
+    message.appendChild(detail);
     form.parentNode.insertBefore(message, form);
 
     // Auto-hide after 5 seconds
@@ -163,10 +170,22 @@
     const form = document.getElementById('contact-form');
     const message = document.createElement('div');
     message.className = 'form-message form-error';
-    message.innerHTML = `
-      <p><strong>❌ Something went wrong</strong></p>
-      <p>Please try again or contact me directly at <a href="mailto:alvarez.joemichael@gmail.com">alvarez.joemichael@gmail.com</a></p>
-    `;
+
+    const heading = document.createElement('p');
+    const strong = document.createElement('strong');
+    strong.textContent = '❌ Something went wrong';
+    heading.appendChild(strong);
+
+    const detail = document.createElement('p');
+    detail.appendChild(document.createTextNode('Please try again or contact me directly at '));
+
+    const emailLink = document.createElement('a');
+    emailLink.href = 'mailto:alvarez.joemichael@gmail.com';
+    emailLink.textContent = 'alvarez.joemichael@gmail.com';
+    detail.appendChild(emailLink);
+
+    message.appendChild(heading);
+    message.appendChild(detail);
     form.parentNode.insertBefore(message, form);
 
     // Auto-hide after 10 seconds

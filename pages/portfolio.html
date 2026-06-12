@@ -366,9 +366,9 @@
               <div class="project-meta">
                 <div class="project-links">
                   <a
-                    href="#"
+                    href="../images/fulls/movie_theater_diagram.png"
                     class="btn btn-primary"
-                    onclick="openSchemaModal()"
+                    data-open-schema-modal
                     >View Schema</a
                   >
                 </div>
@@ -394,7 +394,14 @@
     <!-- Schema Modal -->
     <div id="schemaModal" class="modal">
       <div class="modal-content">
-        <span class="close" onclick="closeSchemaModal()">&times;</span>
+        <button
+          type="button"
+          class="close"
+          data-close-schema-modal
+          aria-label="Close schema modal"
+        >
+          &times;
+        </button>
         <img
           src="../images/fulls/movie_theater_diagram.png"
           alt="Movie Theater Database Schema"

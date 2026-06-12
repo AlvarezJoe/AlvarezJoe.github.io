@@ -59,6 +59,7 @@
     initSmoothScrolling();
     initNavbarScroll();
     initSchemaModal();
+    initCarousel();
     initPagePreloader();
     initMobileNav();
   });
@@ -197,7 +198,17 @@
     anchorLinks.forEach(function (link) {
       link.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
-        const target = document.querySelector(href);
+        if (!href || href === '#') {
+          return;
+        }
+
+        // Guard against invalid selectors in href values.
+        let target;
+        try {
+          target = document.querySelector(href);
+        } catch {
+          return;
+        }
 
         if (target) {
           e.preventDefault();
@@ -234,8 +245,10 @@
     const modal = $('#schemaModal');
     if (!modal) return;
 
-    // Make functions global for onclick handlers
-    window.openSchemaModal = function () {
+    const openTrigger = document.querySelector('[data-open-schema-modal]');
+    const closeTrigger = modal.querySelector('[data-close-schema-modal]');
+
+    function openSchemaModal() {
       scrollPosition = window.scrollY;
 
       // Prevent background scrolling
@@ -248,9 +261,9 @@
       setTimeout(function () {
         modal.style.opacity = '1';
       }, 10);
-    };
+    }
 
-    window.closeSchemaModal = function () {
+    function closeSchemaModal() {
       // Fade out effect
       modal.style.opacity = '0';
 
@@ -263,12 +276,29 @@
         document.body.style.width = '';
         window.scrollTo(0, scrollPosition);
       }, 300);
-    };
+    }
+
+    if (openTrigger) {
+      openTrigger.addEventListener('click', function (e) {
+        e.preventDefault();
+        openSchemaModal();
+      });
+    }
+
+    if (closeTrigger) {
+      closeTrigger.addEventListener('click', closeSchemaModal);
+    }
 
     // Close modal when clicking outside
     modal.addEventListener('click', function (e) {
       if (e.target === modal) {
-        window.closeSchemaModal();
+        closeSchemaModal();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.style.display === 'block') {
+        closeSchemaModal();
       }
     });
   }
@@ -359,7 +389,6 @@
         return;
       }
 
-      console.log('Prefetching:', url); // Debug log
       preloadedPages.add(url);
       currentPreloads++;
 
@@ -369,12 +398,10 @@
       linkElement.as = 'document';
 
       linkElement.onload = function () {
-        console.log('Prefetch successful:', url); // Debug log
         currentPreloads--;
       };
 
       linkElement.onerror = function () {
-        console.log('Prefetch failed:', url); // Debug log
         currentPreloads--;
         preloadedPages.delete(url);
       };
