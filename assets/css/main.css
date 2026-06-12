@@ -733,7 +733,11 @@ input[type='button'].primary:hover {
   height: 3px;
   margin: 0.8rem auto 0;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--accent-color), var(--tertiary-color));
+  background: linear-gradient(
+    90deg,
+    var(--accent-color),
+    var(--tertiary-color)
+  );
 }
 
 /* Filter Tabs */
